@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.rmi.Naming;
 
 import org.apache.log4j.ConsoleAppender;
@@ -139,7 +142,10 @@ public class RMIClient {
 				break;
 			case "REGISTRY":
 				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				
+				Path path = Paths.get("../RMIServer" + (serverNum-1) + "/files/" + key);
+				if (Files.exists(path)) {
+				  // file exist
+				}
 				log.info("Client on Server #" + serverNum + " RUNNING REGISTRY :" + coordinatorHostImpl.REGISTRY(hostname + ":" + port,key));
 				break;
 			case "DEREGISTER":
