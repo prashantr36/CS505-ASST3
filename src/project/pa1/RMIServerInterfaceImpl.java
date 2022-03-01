@@ -1,4 +1,4 @@
-package project3;
+package project.pa1;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,10 +28,10 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-import project3.io.RMIInputStream;
-import project3.io.RMIInputStreamImpl;
-import project3.io.RMIOutputStream;
-import project3.io.RMIOutputStreamImpl;
+import project.io.RMIInputStream;
+import project.io.RMIInputStreamImpl;
+import project.io.RMIOutputStream;
+import project.io.RMIOutputStreamImpl;
 
 @SuppressWarnings("serial")
 public class RMIServerInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, PeerInterface{

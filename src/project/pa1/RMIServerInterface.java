@@ -1,4 +1,4 @@
-package project3;
+package project.pa1;
 
 import java.io.File;
 import java.io.IOException;
