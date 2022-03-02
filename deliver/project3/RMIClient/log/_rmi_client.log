@@ -4332,3 +4332,335 @@
 2022-02-21 22:12:09,555 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
 2022-02-21 22:12:10,189 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
 2022-02-21 22:12:10,662 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 07:46:23,093 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:46:23,818 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 07:46:24,416 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 07:46:24,973 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:46:25,477 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 07:46:25,925 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 07:46:26,452 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 07:46:26,980 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 07:47:20,394 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:47:20,898 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 07:47:21,501 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 07:47:22,015 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:47:22,648 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 07:47:23,267 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 07:48:42,695 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:48:43,167 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 07:48:43,723 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 07:48:44,191 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 07:48:44,671 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 07:48:45,168 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 07:48:45,640 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 07:48:46,111 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 07:48:46,974 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 06096907-3fd8-4142-ad4d-1661d90ed0ad.txt Downloaded at localhost:4542
+2022-03-01 07:48:47,532 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 06096907-3fd8-4142-ad4d-1661d90ed0ad.txt Downloaded at localhost:4542
+2022-03-01 07:48:48,039 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 07:48:48,494 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 07:48:49,005 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 07:48:49,485 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 06096907-3fd8-4142-ad4d-1661d90ed0ad.txt Downloaded at localhost:4542
+2022-03-01 07:48:49,955 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 06096907-3fd8-4142-ad4d-1661d90ed0ad.txt Downloaded at localhost:4542
+2022-03-01 07:48:50,413 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 06096907-3fd8-4142-ad4d-1661d90ed0ad.txt Downloaded at localhost:4542
+2022-03-01 07:48:50,877 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 07:48:51,365 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 07:48:51,818 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 07:48:52,339 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:22:57,813 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:22:58,010 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:22:58,222 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:22:58,446 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:22:58,700 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:22:58,940 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:22:59,193 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:22:59,433 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:22:59,780 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File a9275e86-a400-4c54-a91d-c672750bb793.txt Downloaded at localhost:4542
+2022-03-01 09:23:00,000 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File a9275e86-a400-4c54-a91d-c672750bb793.txt Downloaded at localhost:4542
+2022-03-01 09:23:00,258 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:23:00,514 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:23:00,765 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:23:00,966 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File a9275e86-a400-4c54-a91d-c672750bb793.txt Downloaded at localhost:4542
+2022-03-01 09:23:01,153 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File a9275e86-a400-4c54-a91d-c672750bb793.txt Downloaded at localhost:4542
+2022-03-01 09:23:01,343 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File a9275e86-a400-4c54-a91d-c672750bb793.txt Downloaded at localhost:4542
+2022-03-01 09:23:01,530 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:23:01,725 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:23:01,920 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:23:02,121 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:24:31,070 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:24:31,261 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:24:31,451 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:24:31,641 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:24:31,831 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:24:32,030 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:24:32,212 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:24:32,395 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:24:32,673 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 342fd0bf-f5fb-466d-b952-fd73a2fb9c1d.txt Downloaded at localhost:4542
+2022-03-01 09:24:32,860 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 342fd0bf-f5fb-466d-b952-fd73a2fb9c1d.txt Downloaded at localhost:4542
+2022-03-01 09:24:33,052 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:24:33,243 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:24:53,059 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:24:53,252 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:24:53,454 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:24:53,655 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:24:53,841 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:24:54,028 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:24:54,223 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:24:54,412 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:24:54,687 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 3ede73ff-ca26-44a4-8b4a-8e7e4056d32b.txt Downloaded at localhost:4542
+2022-03-01 09:24:54,874 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 3ede73ff-ca26-44a4-8b4a-8e7e4056d32b.txt Downloaded at localhost:4542
+2022-03-01 09:24:55,059 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:24:55,252 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:24:55,439 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:24:55,624 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 3ede73ff-ca26-44a4-8b4a-8e7e4056d32b.txt Downloaded at localhost:4542
+2022-03-01 09:24:55,814 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 3ede73ff-ca26-44a4-8b4a-8e7e4056d32b.txt Downloaded at localhost:4542
+2022-03-01 09:24:56,000 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 3ede73ff-ca26-44a4-8b4a-8e7e4056d32b.txt Downloaded at localhost:4542
+2022-03-01 09:24:56,185 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:24:56,377 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:24:56,563 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:24:56,748 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:25:37,666 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:25:37,870 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:25:38,064 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:25:38,255 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:25:38,438 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:25:38,622 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:25:38,810 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:25:39,002 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:25:39,275 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 6e739d48-bd32-4fda-84eb-2f492901e163.txt Downloaded at localhost:4542
+2022-03-01 09:25:39,461 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 6e739d48-bd32-4fda-84eb-2f492901e163.txt Downloaded at localhost:4542
+2022-03-01 09:25:39,654 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:25:39,839 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:25:40,028 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:25:40,215 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 6e739d48-bd32-4fda-84eb-2f492901e163.txt Downloaded at localhost:4542
+2022-03-01 09:25:40,402 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 6e739d48-bd32-4fda-84eb-2f492901e163.txt Downloaded at localhost:4542
+2022-03-01 09:25:40,586 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 6e739d48-bd32-4fda-84eb-2f492901e163.txt Downloaded at localhost:4542
+2022-03-01 09:25:40,776 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:25:40,966 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:25:41,158 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:25:41,347 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:26:13,503 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:26:13,691 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:26:13,886 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:26:14,076 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:26:14,261 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:26:14,448 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:26:14,642 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:26:14,830 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:26:15,118 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8eaa9a40-8408-45f0-8a4c-1d44b266c27e.txt Downloaded at localhost:4542
+2022-03-01 09:26:15,300 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8eaa9a40-8408-45f0-8a4c-1d44b266c27e.txt Downloaded at localhost:4542
+2022-03-01 09:26:15,484 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:26:15,672 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:26:15,866 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:26:16,058 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8eaa9a40-8408-45f0-8a4c-1d44b266c27e.txt Downloaded at localhost:4542
+2022-03-01 09:26:16,243 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8eaa9a40-8408-45f0-8a4c-1d44b266c27e.txt Downloaded at localhost:4542
+2022-03-01 09:26:16,429 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8eaa9a40-8408-45f0-8a4c-1d44b266c27e.txt Downloaded at localhost:4542
+2022-03-01 09:26:16,616 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:26:16,802 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:26:16,995 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:26:17,178 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:37:11,623 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:37:11,846 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:37:12,087 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:37:12,316 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:37:12,537 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:37:12,761 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:37:12,981 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:37:13,219 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:37:13,529 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 56bfeec3-23fc-453a-90c0-90d4368ec952.txt Downloaded at localhost:4542
+2022-03-01 09:37:13,746 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 56bfeec3-23fc-453a-90c0-90d4368ec952.txt Downloaded at localhost:4542
+2022-03-01 09:37:14,012 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:14,254 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:37:14,464 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:14,674 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 56bfeec3-23fc-453a-90c0-90d4368ec952.txt Downloaded at localhost:4542
+2022-03-01 09:37:14,892 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 56bfeec3-23fc-453a-90c0-90d4368ec952.txt Downloaded at localhost:4542
+2022-03-01 09:37:15,108 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 56bfeec3-23fc-453a-90c0-90d4368ec952.txt Downloaded at localhost:4542
+2022-03-01 09:37:15,339 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:15,556 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:37:15,774 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:37:16,007 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:37:32,439 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:37:32,672 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:37:32,892 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:37:33,111 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:37:33,328 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:37:33,559 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:37:33,785 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:37:34,015 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:37:34,348 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 5ca77017-7076-459d-8a3a-27c6d116a4c0.txt Downloaded at localhost:4542
+2022-03-01 09:37:34,579 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 5ca77017-7076-459d-8a3a-27c6d116a4c0.txt Downloaded at localhost:4542
+2022-03-01 09:37:34,800 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:35,021 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:37:35,229 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:35,448 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 5ca77017-7076-459d-8a3a-27c6d116a4c0.txt Downloaded at localhost:4542
+2022-03-01 09:37:35,667 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 5ca77017-7076-459d-8a3a-27c6d116a4c0.txt Downloaded at localhost:4542
+2022-03-01 09:37:35,885 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 5ca77017-7076-459d-8a3a-27c6d116a4c0.txt Downloaded at localhost:4542
+2022-03-01 09:37:36,101 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:37:36,306 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:37:36,519 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:37:36,742 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:38:20,065 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:38:20,263 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:38:20,469 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:38:20,665 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:38:20,849 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:38:21,052 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:38:21,245 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:38:21,432 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:38:21,708 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File ea48b5b8-01b1-4ae0-a118-cd1d3ca5ad7b.txt Downloaded at localhost:4542
+2022-03-01 09:38:21,908 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File ea48b5b8-01b1-4ae0-a118-cd1d3ca5ad7b.txt Downloaded at localhost:4542
+2022-03-01 09:38:22,107 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:38:22,305 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:38:22,493 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:38:22,687 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File ea48b5b8-01b1-4ae0-a118-cd1d3ca5ad7b.txt Downloaded at localhost:4542
+2022-03-01 09:38:22,874 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File ea48b5b8-01b1-4ae0-a118-cd1d3ca5ad7b.txt Downloaded at localhost:4542
+2022-03-01 09:38:23,087 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File ea48b5b8-01b1-4ae0-a118-cd1d3ca5ad7b.txt Downloaded at localhost:4542
+2022-03-01 09:38:23,288 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:38:23,477 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:38:23,666 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:38:23,857 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:49:55,309 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:49:55,501 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:49:55,690 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:49:55,875 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:49:56,065 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:49:56,253 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:49:56,441 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:49:56,628 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:49:56,903 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7dc6cf28-7a70-48fc-bbd4-9a292117f1f4.txt Downloaded at localhost:4542
+2022-03-01 09:49:57,098 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7dc6cf28-7a70-48fc-bbd4-9a292117f1f4.txt Downloaded at localhost:4542
+2022-03-01 09:49:57,293 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:49:57,482 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:49:57,668 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:49:57,855 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7dc6cf28-7a70-48fc-bbd4-9a292117f1f4.txt Downloaded at localhost:4542
+2022-03-01 09:49:58,050 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7dc6cf28-7a70-48fc-bbd4-9a292117f1f4.txt Downloaded at localhost:4542
+2022-03-01 09:49:58,236 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7dc6cf28-7a70-48fc-bbd4-9a292117f1f4.txt Downloaded at localhost:4542
+2022-03-01 09:49:58,422 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:49:58,610 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:49:58,805 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:49:59,008 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:52:36,273 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:52:36,468 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:52:36,660 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:52:36,850 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:52:37,037 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:52:37,230 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:52:37,419 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:52:37,608 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:52:37,877 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8a096f00-c3e7-4f45-984c-13e0f30f30ca.txt Downloaded at localhost:4542
+2022-03-01 09:52:38,072 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8a096f00-c3e7-4f45-984c-13e0f30f30ca.txt Downloaded at localhost:4542
+2022-03-01 09:52:38,265 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:52:38,456 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:52:38,650 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 09:52:38,844 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:52:39,044 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8a096f00-c3e7-4f45-984c-13e0f30f30ca.txt Downloaded at localhost:4542
+2022-03-01 09:52:39,244 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8a096f00-c3e7-4f45-984c-13e0f30f30ca.txt Downloaded at localhost:4542
+2022-03-01 09:52:39,442 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 8a096f00-c3e7-4f45-984c-13e0f30f30ca.txt Downloaded at localhost:4542
+2022-03-01 09:52:39,637 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:52:39,825 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:52:40,017 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:52:40,218 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 09:54:11,981 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:54:12,171 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 09:54:12,368 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 09:54:12,562 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 09:54:12,762 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 09:54:12,946 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 09:54:13,134 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 09:54:13,320 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 09:54:13,591 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 95cc538f-d113-41aa-8a75-a3d6fb478686.txt Downloaded at localhost:4542
+2022-03-01 09:54:13,776 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 95cc538f-d113-41aa-8a75-a3d6fb478686.txt Downloaded at localhost:4542
+2022-03-01 09:54:13,963 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:54:14,165 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 09:54:14,359 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 09:54:14,548 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:54:14,745 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 95cc538f-d113-41aa-8a75-a3d6fb478686.txt Downloaded at localhost:4542
+2022-03-01 09:54:14,941 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 95cc538f-d113-41aa-8a75-a3d6fb478686.txt Downloaded at localhost:4542
+2022-03-01 09:54:15,138 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 95cc538f-d113-41aa-8a75-a3d6fb478686.txt Downloaded at localhost:4542
+2022-03-01 09:54:15,326 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 09:54:15,525 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:54:15,709 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 09:54:15,892 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:01:28,355 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 18:01:29,012 INFO  [RMIClient] Client on Server #4 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:4542
+2022-03-01 18:01:29,551 INFO  [RMIClient] Client on Server #2 RUNNING GET :File f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt Downloaded at localhost:2345
+2022-03-01 18:01:30,060 INFO  [RMIClient] Client on Server #3 RUNNING GET :localhost:3445
+2022-03-01 18:01:30,530 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:01:31,065 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:01:31,791 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 18:01:32,474 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 18:01:33,788 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 148ca769-e375-4a41-b10f-c5be56a4cf4e.txt Downloaded at localhost:4542
+2022-03-01 18:01:34,529 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 148ca769-e375-4a41-b10f-c5be56a4cf4e.txt Downloaded at localhost:4542
+2022-03-01 18:01:35,345 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:01:36,008 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 18:01:36,687 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 18:01:37,349 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:01:38,023 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 148ca769-e375-4a41-b10f-c5be56a4cf4e.txt Downloaded at localhost:4542
+2022-03-01 18:01:38,667 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 148ca769-e375-4a41-b10f-c5be56a4cf4e.txt Downloaded at localhost:4542
+2022-03-01 18:01:39,427 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 148ca769-e375-4a41-b10f-c5be56a4cf4e.txt Downloaded at localhost:4542
+2022-03-01 18:01:40,190 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:01:40,941 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:01:41,665 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:01:42,458 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:04:23,135 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:04:23,798 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:04:24,435 INFO  [RMIClient] Client on Server #2 RUNNING GET :No such file on any peer
+2022-03-01 18:04:24,978 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:04:25,602 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:04:26,292 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:04:27,061 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 18:04:27,722 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :localhost:2334
+2022-03-01 18:04:28,999 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 9d3962f9-830f-448e-8c68-0d4b1122bca1.txt Downloaded at localhost:4542
+2022-03-01 18:04:29,639 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 9d3962f9-830f-448e-8c68-0d4b1122bca1.txt Downloaded at localhost:4542
+2022-03-01 18:04:30,370 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:04:31,080 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 18:04:31,909 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 18:04:32,644 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:04:33,496 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 9d3962f9-830f-448e-8c68-0d4b1122bca1.txt Downloaded at localhost:4542
+2022-03-01 18:04:34,419 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 9d3962f9-830f-448e-8c68-0d4b1122bca1.txt Downloaded at localhost:4542
+2022-03-01 18:04:35,434 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 9d3962f9-830f-448e-8c68-0d4b1122bca1.txt Downloaded at localhost:4542
+2022-03-01 18:04:36,190 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:04:37,077 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:04:37,972 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:04:38,726 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:08:06,719 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:08:07,711 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:08:08,515 INFO  [RMIClient] Client on Server #2 RUNNING GET :No such file on any peer
+2022-03-01 18:08:09,270 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:08:10,124 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:08:10,952 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:08:11,823 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 18:08:12,599 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:08:14,497 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7b821e4c-6953-49a0-9112-985e9cde0a09.txt Downloaded at localhost:4542
+2022-03-01 18:08:15,413 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7b821e4c-6953-49a0-9112-985e9cde0a09.txt Downloaded at localhost:4542
+2022-03-01 18:08:16,320 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:08:17,182 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 18:08:17,901 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 18:08:18,929 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:08:19,788 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7b821e4c-6953-49a0-9112-985e9cde0a09.txt Downloaded at localhost:4542
+2022-03-01 18:08:20,627 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7b821e4c-6953-49a0-9112-985e9cde0a09.txt Downloaded at localhost:4542
+2022-03-01 18:08:21,518 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 7b821e4c-6953-49a0-9112-985e9cde0a09.txt Downloaded at localhost:4542
+2022-03-01 18:08:22,397 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:08:23,236 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:08:24,234 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:08:25,141 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:19:46,884 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:19:47,758 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:19:48,669 INFO  [RMIClient] Client on Server #2 RUNNING GET :No such file on any peer
+2022-03-01 18:19:49,635 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:19:50,497 INFO  [RMIClient] Client on Server #3 RUNNING GET :No such file on any peer
+2022-03-01 18:19:51,322 INFO  [RMIClient] Client on Server #4 RUNNING GET :No such file on any peer
+2022-03-01 18:19:52,289 INFO  [RMIClient] Client on Server #5 RUNNING GET :No such file on any peer
+2022-03-01 18:19:53,168 INFO  [RMIClient] Client on Server #5 RUNNING RETRIEVE :No such file on any peer
+2022-03-01 18:19:54,847 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 80bb09ce-1496-46c8-ab2e-17e7a8d2972f.txt Downloaded at localhost:4542
+2022-03-01 18:19:55,978 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 80bb09ce-1496-46c8-ab2e-17e7a8d2972f.txt Downloaded at localhost:4542
+2022-03-01 18:19:56,861 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:19:57,628 INFO  [RMIClient] Client on Server #2 RUNNING REGISTRY :ACCEPT
+2022-03-01 18:19:58,491 ERROR [RMIClient] Error: Client on Server #4 RUNNING REGISTRY cause: no such file on server
+2022-03-01 18:19:59,268 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:20:00,041 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 80bb09ce-1496-46c8-ab2e-17e7a8d2972f.txt Downloaded at localhost:4542
+2022-03-01 18:20:00,801 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 80bb09ce-1496-46c8-ab2e-17e7a8d2972f.txt Downloaded at localhost:4542
+2022-03-01 18:20:01,551 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :File 80bb09ce-1496-46c8-ab2e-17e7a8d2972f.txt Downloaded at localhost:4542
+2022-03-01 18:20:02,294 INFO  [RMIClient] Client on Server #3 RUNNING SEARCH :localhost:2345
+2022-03-01 18:20:03,016 INFO  [RMIClient] Client on Server #2 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:20:03,650 INFO  [RMIClient] Client on Server #4 RUNNING DEREGISTER :ACCEPT
+2022-03-01 18:20:04,405 INFO  [RMIClient] Client on Server #4 RUNNING RETRIEVE :No such file on any peer

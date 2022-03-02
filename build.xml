@@ -8,8 +8,8 @@
 	<property environment="env"/>
 	<property name="ECLIPSE_HOME" value="../../../Downloads/eclipse/"/>
 	<property name="debuglevel" value="source,lines,vars"/>
-	<property name="target" value="1.7"/>
-	<property name="source" value="1.7"/>
+	<property name="target" value="1.8"/>
+	<property name="source" value="1.8"/>
 	<path id="KeyVS.classpath">
 		<pathelement location="bin"/>
 		<pathelement location="resources/commons-io-2.4.jar"/>
@@ -41,7 +41,7 @@
 	<target name="jar" depends="build">
 		<jar destfile="deliver/project3/RMIServer1/RMIServer.jar" filesetmanifest="mergewithoutmain">
 					<manifest>
-						<attribute name="Main-Class" value="project3.RMIServer"/>
+						<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
 						<attribute name="Class-Path" value="."/>
 					</manifest>
 					<fileset dir="bin"/>
@@ -50,7 +50,7 @@
 				</jar>
 		<jar destfile="deliver/project3/RMICoordinator/RMICoordinator.jar" filesetmanifest="mergewithoutmain">
 										<manifest>
-											<attribute name="Main-Class" value="project3.RMICoordinator"/>
+											<attribute name="Main-Class" value="project3.pa1.RMICoordinator"/>
 											<attribute name="Class-Path" value="."/>
 										</manifest>
 										<fileset dir="bin"/>
@@ -59,7 +59,7 @@
 									</jar>
 		<jar destfile="deliver/project3/RMIServer2/RMIServer.jar" filesetmanifest="mergewithoutmain">
 								<manifest>
-									<attribute name="Main-Class" value="project3.RMIServer"/>
+									<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
 									<attribute name="Class-Path" value="."/>
 								</manifest>
 								<fileset dir="bin"/>
@@ -68,7 +68,7 @@
 							</jar>
 					<jar destfile="deliver/project3/RMIServer3/RMIServer.jar" filesetmanifest="mergewithoutmain">
 									<manifest>
-										<attribute name="Main-Class" value="project3.RMIServer"/>
+										<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
 										<attribute name="Class-Path" value="."/>
 									</manifest>
 									<fileset dir="bin"/>
@@ -77,7 +77,7 @@
 					</jar>
 					<jar destfile="deliver/project3/RMIServer4/RMIServer.jar" filesetmanifest="mergewithoutmain">
 									<manifest>
-										<attribute name="Main-Class" value="project3.RMIServer"/>
+										<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
 										<attribute name="Class-Path" value="."/>
 									</manifest>
 									<fileset dir="bin"/>
@@ -86,7 +86,7 @@
 								</jar>
 				<jar destfile="deliver/project3/RMIClient/RMIClient.jar" filesetmanifest="mergewithoutmain">
 					<manifest>
-						<attribute name="Main-Class" value="project3.RMIClient"/>
+						<attribute name="Main-Class" value="project3.pa1.RMIClient"/>
 						<attribute name="Class-Path" value="."/>
 					</manifest>
 					<fileset dir="bin"/>

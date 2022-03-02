@@ -5387,3 +5387,512 @@
 2022-02-21 22:11:57,781 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
 2022-02-21 22:11:57,787 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
 2022-02-21 22:11:57,788 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 07:46:22,645 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 07:46:22,729 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,731 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 07:46:22,746 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,747 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 07:46:22,754 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,754 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 07:46:22,762 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,763 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 07:46:22,771 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,771 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 07:46:22,785 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,786 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 07:46:22,797 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,797 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 07:46:22,803 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,806 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 07:46:22,815 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:22,815 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 07:46:22,823 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:46:23,077 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 07:46:23,089 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:46:23,090 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 07:46:24,965 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 07:46:24,970 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:46:24,971 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 07:46:25,467 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 07:46:25,473 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 07:46:25,473 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 07:47:20,018 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 07:47:20,091 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,092 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 07:47:20,101 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,103 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 07:47:20,114 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,115 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 07:47:20,123 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,124 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 07:47:20,131 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,131 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 07:47:20,142 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,143 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 07:47:20,152 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,153 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 07:47:20,162 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,165 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 07:47:20,172 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,172 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 07:47:20,178 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:47:20,378 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 07:47:20,391 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:47:20,391 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 07:47:22,001 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 07:47:22,012 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:47:22,013 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 07:47:22,637 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 07:47:22,644 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 07:47:22,645 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 07:48:28,589 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 07:48:28,653 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,654 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 07:48:28,664 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,666 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 07:48:28,673 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,674 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 07:48:28,687 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,688 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 07:48:28,700 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,701 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 07:48:28,711 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,711 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 07:48:28,720 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,721 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 07:48:28,727 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,728 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 07:48:28,735 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:28,736 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 07:48:28,743 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,297 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 07:48:42,365 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,365 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 07:48:42,373 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,375 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 07:48:42,382 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,382 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 07:48:42,392 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,392 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 07:48:42,403 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,404 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 07:48:42,411 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,412 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 07:48:42,421 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,422 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 07:48:42,429 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,430 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 07:48:42,435 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,436 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 07:48:42,441 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 07:48:42,678 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 07:48:42,689 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:48:42,690 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 07:48:44,178 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 07:48:44,187 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 07:48:44,188 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 07:48:44,659 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 07:48:44,668 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 07:48:44,668 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:22:57,574 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:22:57,611 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,611 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:22:57,619 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,620 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:22:57,625 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,625 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:22:57,629 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,630 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:22:57,633 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,633 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:22:57,637 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,637 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:22:57,640 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,640 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:22:57,644 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,645 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:22:57,649 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,649 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:22:57,652 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:22:57,808 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:22:57,812 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:22:57,812 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:22:58,440 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:22:58,444 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:22:58,444 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:22:58,696 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:22:58,698 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:22:58,698 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:24:30,851 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:24:30,874 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,874 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:24:30,877 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,878 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:24:30,883 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,883 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:24:30,887 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,887 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:24:30,892 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,892 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:24:30,898 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,898 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:24:30,901 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,901 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:24:30,904 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,905 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:24:30,909 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:30,909 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:24:30,912 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:31,065 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:24:31,068 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:24:31,068 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:24:31,638 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:24:31,640 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:24:31,640 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:24:31,829 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:24:31,830 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:24:31,831 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:24:42,183 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:24:42,209 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,210 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:24:42,214 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,215 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:24:42,217 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,218 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:24:42,221 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,221 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:24:42,226 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,227 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:24:42,230 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,231 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:24:42,235 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,235 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:24:42,238 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,240 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:24:42,243 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,244 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:24:42,246 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:42,413 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:24:42,416 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:24:42,417 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:24:52,819 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:24:52,846 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,847 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:24:52,850 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,850 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:24:52,855 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,855 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:24:52,861 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,861 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:24:52,865 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,865 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:24:52,869 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,870 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:24:52,874 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,874 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:24:52,876 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,878 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:24:52,880 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:52,881 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:24:52,884 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:24:53,054 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:24:53,058 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:24:53,058 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:24:53,652 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:24:53,654 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:24:53,654 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:24:53,839 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:24:53,840 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:24:53,840 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:25:37,426 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:25:37,452 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,452 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:25:37,457 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,458 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:25:37,463 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,463 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:25:37,466 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,466 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:25:37,470 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,470 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:25:37,475 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,475 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:25:37,478 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,479 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:25:37,481 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,483 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:25:37,486 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,487 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:25:37,489 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:25:37,661 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:25:37,664 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:25:37,665 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:25:38,253 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:25:38,254 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:25:38,255 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:25:38,436 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:25:38,437 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:25:38,438 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:26:13,271 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:26:13,295 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,295 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:26:13,300 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,301 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:26:13,305 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,306 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:26:13,309 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,309 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:26:13,314 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,315 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:26:13,319 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,319 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:26:13,322 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,323 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:26:13,326 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,327 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:26:13,330 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,330 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:26:13,332 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:26:13,494 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:26:13,501 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:26:13,502 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:26:14,073 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:26:14,075 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:26:14,075 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:26:14,258 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:26:14,260 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:26:14,260 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:37:11,293 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:37:11,354 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,356 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:37:11,360 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,362 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:37:11,367 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,368 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:37:11,373 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,374 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:37:11,379 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,379 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:37:11,384 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,384 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:37:11,388 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,389 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:37:11,391 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,393 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:37:11,395 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,396 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:37:11,399 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,399 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:37:11,408 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:11,617 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:37:11,621 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:37:11,622 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:37:12,313 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:37:12,315 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:37:12,315 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:37:12,533 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:37:12,535 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:37:12,536 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:37:32,023 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:37:32,060 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,061 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:37:32,067 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,068 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:37:32,075 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,075 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:37:32,086 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,087 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:37:32,093 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,094 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:37:32,099 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,099 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:37:32,104 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,105 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:37:32,108 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,110 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:37:32,114 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,115 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:37:32,122 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:37:32,316 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:37:32,436 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:37:32,437 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:37:33,107 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:37:33,109 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:37:33,109 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:37:33,323 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:37:33,326 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:37:33,327 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:38:19,812 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:38:19,845 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,846 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:38:19,850 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,850 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:38:19,854 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,855 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:38:19,859 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,860 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:38:19,866 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,866 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:38:19,870 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,871 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:38:19,874 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,875 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:38:19,879 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,881 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:38:19,887 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:19,887 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:38:19,891 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:38:20,058 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:38:20,063 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:38:20,064 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:38:20,662 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:38:20,663 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:38:20,663 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:38:20,847 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:38:20,848 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:38:20,848 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:49:54,995 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:49:55,017 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,018 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:49:55,022 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,023 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:49:55,027 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,027 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:49:55,031 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,032 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:49:55,037 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,037 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:49:55,042 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,042 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:49:55,046 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,046 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:49:55,052 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,053 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:49:55,056 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,056 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:49:55,059 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:49:55,227 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:49:55,307 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:49:55,308 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:49:55,873 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:49:55,874 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:49:55,874 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:49:56,062 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:49:56,063 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:49:56,064 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:52:35,934 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:52:35,964 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,965 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:52:35,969 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,969 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:52:35,977 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,978 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:52:35,985 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,985 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:52:35,989 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,990 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:52:35,993 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,994 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:52:35,998 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:35,998 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:52:36,001 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:36,002 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:52:36,006 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:36,006 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:52:36,009 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:52:36,177 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:52:36,271 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:52:36,272 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:52:36,848 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:52:36,849 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:52:36,850 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:52:37,035 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:52:37,036 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:52:37,036 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 09:54:11,621 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 09:54:11,648 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,648 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 09:54:11,651 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,652 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 09:54:11,656 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,656 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 09:54:11,661 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,662 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 09:54:11,667 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,667 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 09:54:11,673 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,673 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 09:54:11,678 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,678 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 09:54:11,680 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,681 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 09:54:11,684 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,685 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 09:54:11,687 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 09:54:11,977 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 09:54:11,980 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:54:11,980 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 09:54:12,560 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 09:54:12,561 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 09:54:12,561 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 09:54:12,760 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 09:54:12,761 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 09:54:12,761 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:01:27,715 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 19eebcea-a897-4ee7-845a-b363644e7710.txt|] from client localhost:3445
+2022-03-01 18:01:27,857 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,858 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 1af74b72-d347-468f-b62f-831487c9c95f.txt|] from client localhost:3445
+2022-03-01 18:01:27,872 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,874 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 5c366066-1c1e-4339-9c2f-38e36a1d6ad5.txt|] from client localhost:3445
+2022-03-01 18:01:27,885 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,886 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 18:01:27,898 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,899 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 64ae66e5-3555-48e7-8899-c36712ac876b.txt|] from client localhost:3445
+2022-03-01 18:01:27,907 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,908 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 693205ab-200f-42bf-8dc0-9a1f3b8765fb.txt|] from client localhost:3445
+2022-03-01 18:01:27,917 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,918 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT 778cc552-ade9-4308-a649-04b9745c20c1.txt|] from client localhost:3445
+2022-03-01 18:01:27,930 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,931 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT bff3920e-34af-4ae6-96de-cd8885e0fead.txt|] from client localhost:3445
+2022-03-01 18:01:27,936 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,939 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT e8fdf041-412e-467a-b6dc-cd50296366d0.txt|] from client localhost:3445
+2022-03-01 18:01:27,946 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,947 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt|] from client localhost:3445
+2022-03-01 18:01:27,955 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:27,956 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [PUT fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt|] from client localhost:3445
+2022-03-01 18:01:27,963 INFO  [RMIServerInterfaceImpl] ACCEPT for 127.0.0.1:1234
+2022-03-01 18:01:28,287 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 18:01:28,349 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 18:01:28,350 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt already. No GET allowed.]
+2022-03-01 18:01:30,048 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 18:01:30,056 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  localhost:3445
+2022-03-01 18:01:30,057 INFO  [RMIServerInterfaceImpl] [clientId: localhost:3445Freshest copy of fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt already. No GET allowed.]
+2022-03-01 18:01:30,517 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 18:01:30,526 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:01:30,526 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:04:23,090 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 18:04:23,132 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:04:23,132 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:04:24,967 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 18:04:24,974 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:04:24,975 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:04:25,587 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 18:04:25,596 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:04:25,597 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:08:06,640 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 18:08:06,712 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:08:06,714 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:08:09,258 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 18:08:09,266 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:08:09,267 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:08:10,110 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 18:08:10,118 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:08:10,120 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:19:46,817 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET f1ed5429-cf9d-4e98-b0af-35af9c50c225.txt] from client localhost:3445
+2022-03-01 18:19:46,877 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:19:46,878 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:19:49,617 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET fbf15d1f-67b4-465e-a342-3bfcba0d4ac1.txt] from client localhost:3445
+2022-03-01 18:19:49,630 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:19:49,631 INFO  [RMIServerInterfaceImpl] No such file on any peer
+2022-03-01 18:19:50,484 INFO  [RMIServerInterfaceImpl] Server at localhost:3445 received [GET will_this_work.txt] from client localhost:3445
+2022-03-01 18:19:50,493 INFO  [RMIServerInterfaceImpl] GET: key peer_to_contact  REJECT
+2022-03-01 18:19:50,494 INFO  [RMIServerInterfaceImpl] No such file on any peer

@@ -73,6 +73,20 @@ class TestPeerToPeerMethods(unittest.TestCase):
         out = str(out.decode(encoding))
         print('5. [Executed REGISTER AS Server 2 output:', out, ' for file ', self.new_files[0], ']')
         assert 'ACCEPT' in out
+        
+        
+        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
+                                               '-DserverChoice=4', 
+                                               os.path.join(os.path.dirname(__file__),
+                                                             'RMIClient.jar'), 'REGISTRY',
+                                                "invalid.txt"],stdout=subprocess.PIPE)
+        out, err = subprocess_output.communicate()
+        if out:
+            out = str(out.decode(encoding))
+        if err:
+            err = str(err.decode(encoding))
+        print('6. [Executed REGISTER AS Server 2 output:', out, ' for file ', 'invalid.txt', err , ']')
+        assert 'no such file on server' in out
                 
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=3', 
@@ -81,7 +95,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('6. [Executed SEARCH AS Server 3 output:', out, ']') 
+        print('7. [Executed SEARCH AS Server 3 output:', out, ']') 
         assert 'SEARCH :localhost:2345' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
@@ -100,12 +114,8 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('7. [Executed RETRIEVE AS Server 4 output:', out, ']')
-        #assert 'java.io.FileNotFoundException: files/' + self.new_files[0] +  ' (No such file or directory)' in out
-        
-        
-        
-        
+        print('8. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        assert 'RETRIEVE :File ' +self.new_files[0] + ' Downloaded' in out
         
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
@@ -115,7 +125,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('8. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        print('9. [Executed RETRIEVE AS Server 4 output:', out, ']')
         
         
         
@@ -128,7 +138,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('9. [Executed SEARCH AS Server 3 output:', out, ']') 
+        print('10. [Executed SEARCH AS Server 3 output:', out, ']') 
         assert 'SEARCH :localhost:2345' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
@@ -149,7 +159,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('10. [EXECUTED REGISTRY AS Server 2 output:', out, ']')
+        print('11. [EXECUTED REGISTRY AS Server 2 output:', out, ']')
         assert 'ACCEPT' in out
         
         encoding = 'utf-8'
@@ -160,7 +170,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('11. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        print('12. [Executed RETRIEVE AS Server 4 output:', out, ']')
         assert 'RETRIEVE :No such file on any peer' in out
         
         
