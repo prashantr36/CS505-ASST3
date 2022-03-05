@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="KeyVS">
+<project basedir="." default="build" name="KeyVS" >
 	<property environment="env"/>
 	<property name="ECLIPSE_HOME" value="../../../Downloads/eclipse/"/>
 	<property name="debuglevel" value="source,lines,vars"/>
@@ -14,6 +14,7 @@
 		<pathelement location="bin"/>
 		<pathelement location="resources/commons-io-2.4.jar"/>
 		<pathelement location="resources/log4j-1.2.17.jar"/>
+		<pathelement location="resources/ant-contrib.jar"/>
 	</path>
 	<target name="init">
 		<mkdir dir="bin"/>
@@ -24,9 +25,10 @@
 			</fileset>
 		</copy>
 	</target>
-	<target name="clean">
-		<delete dir="bin"/>
-	</target>
+	 <target name="clean">
+	 	<delete dir="bin"/>
+	    <delete dir="${build.dir}"></delete>
+	  </target>
 	<target depends="clean" name="cleanall"/>
 	<target depends="build-subprojects,build-project" name="build"/>
 	<target name="build-subprojects"/>
@@ -37,45 +39,79 @@
 			<classpath refid="KeyVS.classpath"/>
 		</javac>
 	</target>
-	<!--ANT 1.7 is required                                        -->
-	<target name="jar" depends="build">
-		<jar destfile="deliver/project3/RMIServer1/RMIServer.jar" filesetmanifest="mergewithoutmain">
-					<manifest>
-						<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-						<attribute name="Class-Path" value="."/>
-					</manifest>
-					<fileset dir="bin"/>
-					<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-					<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-				</jar>
-		<jar destfile="deliver/project3/RMICoordinator/RMICoordinator.jar" filesetmanifest="mergewithoutmain">
-										<manifest>
-											<attribute name="Main-Class" value="project3.pa1.RMICoordinator"/>
-											<attribute name="Class-Path" value="."/>
-										</manifest>
-										<fileset dir="bin"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-									</jar>
-		<jar destfile="deliver/project3/RMIServer2/RMIServer.jar" filesetmanifest="mergewithoutmain">
-								<manifest>
-									<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-									<attribute name="Class-Path" value="."/>
-								</manifest>
-								<fileset dir="bin"/>
-								<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-								<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-							</jar>
-					<jar destfile="deliver/project3/RMIServer3/RMIServer.jar" filesetmanifest="mergewithoutmain">
-									<manifest>
-										<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-										<attribute name="Class-Path" value="."/>
-									</manifest>
-									<fileset dir="bin"/>
-									<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-									<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+	<!--ANT 1.7 is required  Task definition -->
+	
+	<target name ="parse">
+	<loadfile srcfile="deliver/project3/configuration/configs.txt" property="count.archives.to.expand">
+					        <filterchain>
+					            
+					        	<linecontainsregexp> 
+					        	        <regexp pattern='#Gnutella'/> 
+					        	      </linecontainsregexp> 
+					        		<tailfilter lines="1"/>
+					        	      <tokenfilter> 
+					        	        <replaceregex pattern='#Gnutella' replace=''/> 
+					        	        <replaceregex pattern="=" replace="" flags="g"/>
+					        	      	<replaceregex pattern="\n" replace="" flags="g"/>
+					        	      </tokenfilter> 
+					        	 <striplinebreaks/>
+					        </filterchain>
+					    </loadfile>
+	</target>
+	<!-- number of cycles for our 'foreach' -->
+	<target name="clear-err">
+	    <delete dir="deliver/project3/Gnutella-${repeat.i}"></delete>
+	  </target>
+	
+	<target name="gaar" depends="build, parse">
+			<antcall target="repeat.script">
+				<param name="repeat.target" value="script" />
+				<param name="repeat.n" value="${count.archives.to.expand}" />
+			</antcall>
+		</target>
+	
+	<target name="jar" depends="gaar, clear-err">
+		
+	</target>
+		
+	<target name="repeat.script">
+			<script language="javascript">
+				<![CDATA[
+				for (var i = 1; i <=parseInt(project.getProperty("repeat.n"), 10) ; i++) {
+					var t = project.createTask("antcall");
+					t.setTarget(project.getProperty("repeat.target"));
+					t.init();
+					var p = t.createParam();
+					p.setName("repeat.i");
+					p.setValue(""+i);
+
+					t.perform();
+				}
+			]]>
+			</script>
+		</target>
+	
+	<target name="script" depends="">
+			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer1/RMIServer.jar" filesetmanifest="mergewithoutmain">
+						<manifest>
+							<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
+							<attribute name="Class-Path" value="."/>
+						</manifest>
+						<fileset dir="bin"/>
+						<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+						<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
 					</jar>
-					<jar destfile="deliver/project3/RMIServer4/RMIServer.jar" filesetmanifest="mergewithoutmain">
+			</target>
+			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMICoordinator/RMICoordinator.jar" filesetmanifest="mergewithoutmain">
+											<manifest>
+												<attribute name="Main-Class" value="project3.pa1.RMICoordinator"/>
+												<attribute name="Class-Path" value="."/>
+											</manifest>
+											<fileset dir="bin"/>
+											<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+											<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+										</jar>
+			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer2/RMIServer.jar" filesetmanifest="mergewithoutmain">
 									<manifest>
 										<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
 										<attribute name="Class-Path" value="."/>
@@ -84,16 +120,31 @@
 									<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
 									<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
 								</jar>
-				<jar destfile="deliver/project3/RMIClient/RMIClient.jar" filesetmanifest="mergewithoutmain">
-					<manifest>
-						<attribute name="Main-Class" value="project3.pa1.RMIClient"/>
-						<attribute name="Class-Path" value="."/>
-					</manifest>
-					<fileset dir="bin"/>
-					<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-					<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-				</jar>
-		</target>
-
-
+						<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer3/RMIServer.jar" filesetmanifest="mergewithoutmain">
+										<manifest>
+											<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
+											<attribute name="Class-Path" value="."/>
+										</manifest>
+										<fileset dir="bin"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+						</jar>
+						<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer4/RMIServer.jar" filesetmanifest="mergewithoutmain">
+										<manifest>
+											<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
+											<attribute name="Class-Path" value="."/>
+										</manifest>
+										<fileset dir="bin"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+									</jar>
+					<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIClient/RMIClient.jar" filesetmanifest="mergewithoutmain">
+						<manifest>
+							<attribute name="Main-Class" value="project3.pa1.RMIClient"/>
+							<attribute name="Class-Path" value="."/>
+						</manifest>
+						<fileset dir="bin"/>
+						<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+						<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+					</jar>
 </project>
