@@ -1,15 +1,41 @@
 echo "Setting up 5 Replicas..."
 FILE=configuration/configs.txt
 Server_Name=0
-chmod 775 "$( cd "$( dirname "$0" )" && pwd )"/Gnutella-1/RMIClient/integration_test.py
+Gnutella_Name=0
+chmod 775 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py
 find ../ -type f -name "*.txt" -exec touch {} +
 while read line;do
-	if [[ "$Server_Name" -eq 0 ]]; then
-		(cd "/Gnutella-1/RMICoordinator" && java -jar RMICoordinator.jar $line &)
-	else
-		(cd "/Gnutella-1/RMIServer$Server_Name" && java -jar RMIServer.jar $line &)
+	if [[ "$line" =~ ^# ]]; then
+		continue
 	fi
-	((Server_Name++))
+	if [[ "$line" =~ ^Topology ]]; then
+		continue
+	fi
+	if [[ "$line" =~ ^Gnutella ]]; then
+		((++Gnutella_Name))
+		((Server_Name = 0))
+		continue
+	fi
+	[ -z "$line" ] && continue
+	[[ -z "${param// }" ]] && continue
+	if [[ $line = *[!\ ]* ]]; then
+		if [[ "$Gnutella_Name" -eq 0 ]]; then
+			continue
+		fi
+		echo "Passed"		
+		echo $line
+  	if [[ "$Server_Name" -eq 0 ]]; then
+			(cd "Gnutella-$Gnutella_Name/RMICoordinator" && java -jar SuperPeer.jar $line &)
+			((++Server_Name))
+		else
+			(cd "Gnutella-$Gnutella_Name/RMIServer$Server_Name" && java -jar LeafNode.jar $line &)
+			((++Server_Name))
+		fi
+	else
+		continue
+	fi
+	
+	
 done < $FILE
 for i in {1..5}; do 
   printf '\r%2d' $i
@@ -17,6 +43,6 @@ for i in {1..5}; do
 done
 find ../ -type f -name "*.txt" -exec touch {} +
 # Unit Test
-(cd "/Gnutella-1/RMIClient" && sh runJavaRMIClient.sh);
+(cd "Gnutella-1/RMIClient" && sh runJavaRMIClient.sh);
 # Integration test
-cd "/Gnutella-1/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Gnutella-1/RMIClient/integration_test.py
+cd "Gnutella-1/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py

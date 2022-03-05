@@ -2,90 +2,88 @@
 #is considered to be the super-node and
 #the other clients 
 
-#Gnutella1
+Gnutella1
 localhost 1234
 localhost 2345
 localhost 3445
 localhost 4542
 localhost 5334
 
-#Gnutella2
+Gnutella2
 localhost 1237
 localhost 2348
 localhost 3448
 localhost 4545
 localhost 5337
 
-#Gnutella3
+Gnutella3
 localhost 1240
 localhost 2351
 localhost 3451
 localhost 4547
 localhost 5340
 
-#Gnutella4
+Gnutella4
 localhost 1243
 localhost 2354
 localhost 3454
 localhost 4545
 localhost 5343
 
-#Gnutella5
+Gnutella5
 localhost 1246
 localhost 2357
 localhost 3457
 localhost 4548
 localhost 5346
 
-#Gnutella6
+Gnutella6
 localhost 1249
 localhost 2360
 localhost 3460
 localhost 4551
 localhost 5349
 
-#Gnutella7
+Gnutella7
 localhost 1252
 localhost 2363
 localhost 3463
 localhost 4554
 localhost 5352
 
-#Gnutella8
+Gnutella8
 localhost 1255
 localhost 2366
 localhost 3466
 localhost 4557
 localhost 5355
 
-#Gnutella9
+Gnutella9
 localhost 1258
 localhost 2369
 localhost 3469
 localhost 4560
 localhost 5358
 
-#Gnutella10
+Gnutella10
 localhost 1261
 localhost 2372
 localhost 3472
 localhost 4563
 localhost 5361
 
-#Gnutella11
+Gnutella11
 localhost 1264
 localhost 2375
 localhost 3475
 localhost 4566
 localhost 5364
 
-#Gnutella12
+Gnutella12
 localhost 1267
 localhost 2378
 localhost 3478
 localhost 4569
 localhost 5367
 
-#Topology
-Linear
-Star
+Topology = Star
