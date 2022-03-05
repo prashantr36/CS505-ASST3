@@ -68,7 +68,9 @@
 				<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
 			</jar>
 	  </target>
-	
+	<target name="clear-err">
+    	<delete dir="deliver/project3/Gnutella-${repeat.i}"></delete>
+	</target>
 	<target name="gaar" depends="build, parse">
 			<antcall target="repeat.script">
 				<param name="repeat.target" value="script" />
@@ -76,7 +78,7 @@
 			</antcall>
 		</target>
 	
-	<target name="jar" depends="instrument, gaar">
+	<target name="jar" depends="instrument, gaar, clear-err">
 		
 	</target>
 		
@@ -108,4 +110,41 @@
 				<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
 			</jar>
 		</target>
+	<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer1/LeafNode.jar" filesetmanifest="mergewithoutmain">
+							<manifest>
+								<attribute name="Main-Class" value="project3.pa2.LeafNode"/>
+								<attribute name="Class-Path" value="."/>
+							</manifest>
+							<fileset dir="bin"/>
+							<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+							<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+						</jar>
+				
+				<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMICoordinator/SuperPeer.jar" filesetmanifest="mergewithoutmain">
+												<manifest>
+													<attribute name="Main-Class" value="project3.pa2.SuperPeer"/>
+													<attribute name="Class-Path" value="."/>
+												</manifest>
+												<fileset dir="bin"/>
+												<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+												<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+											</jar>
+				<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer2/LeafNode.jar" filesetmanifest="mergewithoutmain">
+										<manifest>
+											<attribute name="Main-Class" value="project3.pa2.LeafNode"/>
+											<attribute name="Class-Path" value="."/>
+										</manifest>
+										<fileset dir="bin"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+									</jar>
+							<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer3/LeafNode.jar" filesetmanifest="mergewithoutmain">
+											<manifest>
+												<attribute name="Main-Class" value="project3.pa2.LeafNode"/>
+												<attribute name="Class-Path" value="."/>
+											</manifest>
+											<fileset dir="bin"/>
+											<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+											<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+							</jar>
 </project>
