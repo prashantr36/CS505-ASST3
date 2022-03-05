@@ -13,4 +13,6 @@ public interface CentralIndexingServerInterface extends Remote{
 	public String REGISTRY(String clientId, String filename) throws RemoteException;
 	public String SEARCH(String filename)throws RemoteException;
 	public String DEREGISTER(String clientId, String filename)throws RemoteException;
+	public String PUSH_MESSAGE(String string, Object message) throws RemoteException;
+	public String QUERY_MESSAGE(String string, Object message) throws RemoteException;
 }

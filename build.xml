@@ -14,7 +14,6 @@
 		<pathelement location="bin"/>
 		<pathelement location="resources/commons-io-2.4.jar"/>
 		<pathelement location="resources/log4j-1.2.17.jar"/>
-		<pathelement location="resources/ant-contrib.jar"/>
 	</path>
 	<target name="init">
 		<mkdir dir="bin"/>
@@ -43,24 +42,31 @@
 	
 	<target name ="parse">
 	<loadfile srcfile="deliver/project3/configuration/configs.txt" property="count.archives.to.expand">
-					        <filterchain>
-					            
-					        	<linecontainsregexp> 
-					        	        <regexp pattern='#Gnutella'/> 
-					        	      </linecontainsregexp> 
-					        		<tailfilter lines="1"/>
-					        	      <tokenfilter> 
-					        	        <replaceregex pattern='#Gnutella' replace=''/> 
-					        	        <replaceregex pattern="=" replace="" flags="g"/>
-					        	      	<replaceregex pattern="\n" replace="" flags="g"/>
-					        	      </tokenfilter> 
-					        	 <striplinebreaks/>
-					        </filterchain>
-					    </loadfile>
+		<filterchain>
+			<linecontainsregexp> 
+        	        <regexp pattern='#Gnutella'/> 
+        	      </linecontainsregexp> 
+        		<tailfilter lines="1"/>
+        	      <tokenfilter> 
+        	        <replaceregex pattern='#Gnutella' replace=''/> 
+        	        <replaceregex pattern="=" replace="" flags="g"/>
+        	      	<replaceregex pattern="\n" replace="" flags="g"/>
+        	      </tokenfilter> 
+        	 <striplinebreaks/>
+        </filterchain>
+    </loadfile>
 	</target>
 	<!-- number of cycles for our 'foreach' -->
-	<target name="clear-err">
-	    <delete dir="deliver/project3/Gnutella-${repeat.i}"></delete>
+	<target name="instrument">
+		<jar destfile="deliver/project3/Instrument/RMIClient/RMISuperPeerClient.jar" filesetmanifest="mergewithoutmain">
+				<manifest>
+					<attribute name="Main-Class" value="project3.pa2.RMISuperPeerClient"/>
+					<attribute name="Class-Path" value="."/>
+				</manifest>
+				<fileset dir="bin"/>
+				<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+				<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+			</jar>
 	  </target>
 	
 	<target name="gaar" depends="build, parse">
@@ -70,7 +76,7 @@
 			</antcall>
 		</target>
 	
-	<target name="jar" depends="gaar, clear-err">
+	<target name="jar" depends="instrument, gaar">
 		
 	</target>
 		
@@ -91,60 +97,15 @@
 			</script>
 		</target>
 	
-	<target name="script" depends="">
-			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer1/RMIServer.jar" filesetmanifest="mergewithoutmain">
-						<manifest>
-							<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-							<attribute name="Class-Path" value="."/>
-						</manifest>
-						<fileset dir="bin"/>
-						<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-						<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-					</jar>
-			</target>
-			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMICoordinator/RMICoordinator.jar" filesetmanifest="mergewithoutmain">
-											<manifest>
-												<attribute name="Main-Class" value="project3.pa1.RMICoordinator"/>
-												<attribute name="Class-Path" value="."/>
-											</manifest>
-											<fileset dir="bin"/>
-											<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-											<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-										</jar>
-			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer2/RMIServer.jar" filesetmanifest="mergewithoutmain">
-									<manifest>
-										<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-										<attribute name="Class-Path" value="."/>
-									</manifest>
-									<fileset dir="bin"/>
-									<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-									<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-								</jar>
-						<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer3/RMIServer.jar" filesetmanifest="mergewithoutmain">
-										<manifest>
-											<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-											<attribute name="Class-Path" value="."/>
-										</manifest>
-										<fileset dir="bin"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-						</jar>
-						<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIServer4/RMIServer.jar" filesetmanifest="mergewithoutmain">
-										<manifest>
-											<attribute name="Main-Class" value="project3.pa1.RMIServer"/>
-											<attribute name="Class-Path" value="."/>
-										</manifest>
-										<fileset dir="bin"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-										<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-									</jar>
-					<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIClient/RMIClient.jar" filesetmanifest="mergewithoutmain">
-						<manifest>
-							<attribute name="Main-Class" value="project3.pa1.RMIClient"/>
-							<attribute name="Class-Path" value="."/>
-						</manifest>
-						<fileset dir="bin"/>
-						<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
-						<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
-					</jar>
+	<target name="script">
+			<jar destfile="deliver/project3/Gnutella-${repeat.i}/RMIClient/RMISuperPeerClient.jar" filesetmanifest="mergewithoutmain">
+				<manifest>
+					<attribute name="Main-Class" value="project3.pa2.RMISuperPeerClient"/>
+					<attribute name="Class-Path" value="."/>
+				</manifest>
+				<fileset dir="bin"/>
+				<zipfileset excludes="META-INF/*.SF" src="resources/commons-io-2.4.jar"/>
+				<zipfileset excludes="META-INF/*.SF" src="resources/log4j-1.2.17.jar"/>
+			</jar>
+		</target>
 </project>

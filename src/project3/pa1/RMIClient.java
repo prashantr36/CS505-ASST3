@@ -3,11 +3,14 @@ package project3.pa1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.Naming;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
@@ -15,11 +18,16 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-public class RMIClient {
+public abstract class RMIClient {
 	final static Logger log = Logger.getLogger(RMIClient.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
-	final static int numReplicas = 5;
+	final static int maxNumReplicas = 5000;
 	final static int hostPortColumn = 2;
+	static String my_localhost;
+	static String my_port;
+	static HashMap<Integer, Integer> super_peer_indices;
+	static HashMap<Integer, Integer> leaf_node_indices;
+	
 	static void configureLogger()
 	{
 		ConsoleAppender console = new ConsoleAppender(); //create appender
@@ -47,24 +55,57 @@ public class RMIClient {
 	
 	public static int getNumReplicas()
 	{
-		return numReplicas;
+		return maxNumReplicas;
+	}
+	
+	public static class RMIMetadata {
+		 public String src_hostname;
+		 public String src_port;
+		 public String dst_hostname;
+		 public String dst_port;
+		 public RMIMetadata(String src_hostname,
+				 			String src_port,
+				 			String dst_hostname,
+				 			String dst_port) {
+			 this.src_hostname = src_hostname;
+			 this.src_port = src_port;
+			 this.dst_hostname = dst_hostname;
+			 this.dst_port = dst_port;
+		 }		
 	}
 	
 	public static String[][] readConfigFile()
 	{		
-		String hostPorts [][] = new String[numReplicas][hostPortColumn];
+		String hostPorts [][] = new String[maxNumReplicas][hostPortColumn];
+		HashMap<Integer, Integer> super_peer_indices = new HashMap<Integer, Integer>();
+		HashMap<Integer, List<Integer>> leaf_node_indices = new HashMap<Integer, List<Integer>>();
+		
 		try {
-			BufferedReader fileReader = new BufferedReader(new FileReader("../configuration/configs.txt"));			
+			BufferedReader fileReader = new BufferedReader(new FileReader("../../configuration/configs.txt"));			
 			System.out.println("Loading configurations from configs.txt..");
 			int c = 0;
-			
-			while(c++!=numReplicas)
+			int super_peer_index = 0;
+			int leaf_node_index = 0;
+			while(fileReader.read() != -1)
 			{
+				c++;
 				hostPorts[c-1] = fileReader.readLine().split("\\s+");
-				if(hostPorts[c-1][0].isEmpty() || !hostPorts[c-1][1].matches("[0-9]+") || hostPorts[c-1][1].isEmpty())
-				{
-					System.out.println("You have made incorrect entries for addresses in config file, please investigate.");
-					System.exit(-1);
+				if(hostPorts[c-1][0].isEmpty() || 
+						!hostPorts[c-1][1].matches("[0-9]+") ||
+						hostPorts[c-1][1].isEmpty()) {
+					if(hostPorts[c-1][0].contains("Gnutella")) {
+						super_peer_indices.putIfAbsent(super_peer_index + 1, new Integer(-1));
+						super_peer_index += 1;
+						leaf_node_indices.putIfAbsent(leaf_node_index + 1, new LinkedList<Integer>());
+						leaf_node_index += 1;
+					}
+				} else {
+					if(super_peer_indices.containsKey(super_peer_index)
+							&& super_peer_indices.get(super_peer_index) == -1) {
+						super_peer_indices.put(super_peer_index, c-1);
+					} else if(leaf_node_indices.containsKey(leaf_node_index)) {
+						leaf_node_indices.get(leaf_node_index).add(c-1);
+					}
 				}
 			}
 			fileReader.close();
@@ -81,13 +122,11 @@ public class RMIClient {
 		configureLogger();
 		String clientId = "NA";
 		// 4 arguments must be passed in.
-		String hostPorts [][] = new String[numReplicas][hostPortColumn];
+		String hostPorts [][] = new String[maxNumReplicas][hostPortColumn];
 		String command = "";
 		String key = "";
-		String inkVal[];
 		String values = "";		
 		int serverNum =0;
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(args.length < 2  )
 		{
 			log.fatal("Fatal error : instruction key value" );
@@ -102,14 +141,44 @@ public class RMIClient {
 				values +=" " + args[a];
 			serverNum = Integer.parseInt(System.getProperty("serverChoice"));
 		}
+		String coordinator_hostname = hostPorts[0][0];
+		String coordinator_port = hostPorts[0][1];
 		
+		String hostname = hostPorts[serverNum-1][0];
+		String port = hostPorts[serverNum-1][1];
+		
+		forwarder(new RMIMetadata(coordinator_hostname,
+				  coordinator_port, 
+				  hostname,
+				  port),
+				  key,
+				  values,
+				  serverNum,
+				  clientId,
+				  command,
+				  null);
+	}
+	
+	public static RMIMetadata getRMIMetadat(String destination_hostname,
+								String destination_port,
+								String source_hostname,
+								String source_port) {
+		return new RMIMetadata(destination_hostname, destination_port,
+					source_hostname, source_port);
+	}
+	
+	public static void forwarder(RMIMetadata rmiMetadata,
+								 String key,
+								 String values, 
+								 int serverNum,
+								 String clientId, 
+								 String command,
+								 Object message) {
 		try{
-			
-			String coordinator_hostname = hostPorts[0][0];
-			String coordinator_port = hostPorts[0][1];
-			
-			String hostname = hostPorts[serverNum-1][0];
-			String port = hostPorts[serverNum-1][1];
+			String coordinator_hostname = rmiMetadata.src_hostname;
+			String coordinator_port = rmiMetadata.src_port;
+			String hostname = rmiMetadata.dst_hostname;
+			String port = rmiMetadata.dst_port;
 			
 			// Locate the Coordinator
 			CentralIndexingServerInterface coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
@@ -126,22 +195,15 @@ public class RMIClient {
 
 			switch(command.trim().toUpperCase()){
 			case "GET":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				
 				log.info("Client on Server #" + serverNum + " RUNNING GET :" + hostImpl.GET(hostname + ":" + port,key));
 				break;
 			case "RETRIEVE":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				
 				log.info("Client on Server #" + serverNum + " RUNNING RETRIEVE :" + hostImpl.GET(hostname + ":" + port,key));
 				break;
 			case "SEARCH":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				
 				log.info("Client on Server #" + serverNum + " RUNNING SEARCH :" + coordinatorHostImpl.SEARCH(key));
 				break;
 			case "REGISTRY":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
 				Path path = Paths.get("../RMIServer" + (serverNum-1) + "/files/" + key);
 				if (Files.exists(path)) {
 					log.info("Client on Server #" + serverNum + " RUNNING REGISTRY :" + coordinatorHostImpl.REGISTRY(hostname + ":" + port,key));
@@ -150,17 +212,34 @@ public class RMIClient {
 				}
 				
 				break;
-			case "DEREGISTER":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				
+			case "DEREGISTER":				
 				log.info("Client on Server #" + serverNum + " RUNNING DEREGISTER :" + coordinatorHostImpl.DEREGISTER(hostname + ":" + port,key));
 				break;
 			case "PUT":
+				
 				log.info("Client on Server #" + serverNum + " RUNNING GET " +  hostImpl.PUT(hostname + ":" + port,key,values));
 				break;
 			case "DELETE":
 				log.info("Client on Server #" + serverNum + " RUNNING GET " +  hostImpl.DELETE(hostname + ":" + port,key));
 				break;
+			
+			case "PUSH_MESSAGE":
+				if(message instanceof Serializable)
+					log.info("Client on Server #" + serverNum + " RUNNING PUSH MESSAGE " +  coordinatorHostImpl.PUSH_MESSAGE(hostname + ":" + port, message));
+				log.error("Error Client on Server #" + serverNum + " RUNNING PUSH MESSAGE: " + " garbled message.");
+				break;
+			
+			case "QUERY_MESSAGE":
+				if(message instanceof Serializable)
+					log.info("Client on Server #" + serverNum + " RUNNING QUERY MESSAGE " +  coordinatorHostImpl.QUERY_MESSAGE(hostname + ":" + port, message));
+				log.error("Error Client on Server #" + serverNum + " RUNNING QUERY MESSAGE: " + " garbled message.");
+				break;	
+			case "QUERY_HIT_MESSAGE":
+				if(message instanceof Serializable)
+					log.info("Client on Server #" + serverNum + " RUNNING QUERY_HIT MESSAGE " +  hostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port,key, message));
+				log.error("Error Client on Server #" + serverNum + " RUNNING QUERY_HIT MESSAGE: " + " garbled message.");
+				break;	
+				
 			default:
 				String response = "Client "+clientId + ":" +  "Invalid command " + command + " was received";
 				log.error(response);
@@ -172,5 +251,7 @@ public class RMIClient {
 			log.error("Error occured while connecting to RMI server with error, " + e.getMessage());
 		}
 	}
+	
+	
 }
 

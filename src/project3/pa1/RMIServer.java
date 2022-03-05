@@ -1,15 +1,12 @@
 package project3.pa1;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.*;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 import org.apache.log4j.ConsoleAppender;
@@ -18,11 +15,10 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-public class RMIServer {
+public abstract class RMIServer {
 	private static ServerSocket serverSocket;
-    private static final String PORT_FILE = "port";
     static Semaphore semaphore;
-	final static Logger log = Logger.getLogger(RMIServer.class);
+	protected final static Logger log = Logger.getLogger(RMIServer.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	static void configureLogger()
 	{
@@ -49,10 +45,8 @@ public class RMIServer {
 		//repeat with all other desired appenders
 	}
 	// Takes a port number to initialize the server
-	public RMIServer(String hostname, Integer portNumber) throws Exception
+	public RMIServer(String hostname, Integer portNumber, RMIServerInterface rmiMethods) throws Exception
 	{		
-		// create the registry 
-		RMIServerInterface rmiMethods = new RMIServerInterfaceImpl(portNumber);
 		RMIServerInterfaceImpl rmi = (RMIServerInterfaceImpl) rmiMethods;
 		rmi.startBackGroundFolderThread();
 		LocateRegistry.createRegistry(portNumber);
@@ -61,43 +55,17 @@ public class RMIServer {
 		Naming.bind(bindMe, rmiMethods);
 		System.out.println("RMIServer started successfully");
 	}
-	public static void main(String args[]) throws InterruptedException
+	public static void initialize(String args[]) throws InterruptedException
 	{
 		configureLogger();
-		if(args.length != 2 )
-		{
-			System.out.println("Enter hostname");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			args = new String[2];
-			try{
-				System.out.println("Enter hostname");
-				args[0] = br.readLine();
-				System.out.println("Enter port");
-				args[1] = br.readLine();
-				}
-			catch(Exception e)
-			{
-				log.fatal("Fatal error : Usage - host port#" );
-				System.exit(-1);
-			}
-		}
 		Integer portNumber =0;
 		try{
 			portNumber = Integer.parseInt(args[1].trim());
 		}
 		catch(Exception e)
 		{
-			log.fatal(e.getMessage());
+			System.out.println(e.getMessage());
 			System.exit(-1);
-		}
-		try{
-			RMIServer rmi_server = new RMIServer(args[0],portNumber);
-			
-		}
-		catch(Exception e)
-		{
-			log.error("RMI server binding failed with " + e.getMessage());
-			e.printStackTrace();
 		}
 		 // create server socket
         try {

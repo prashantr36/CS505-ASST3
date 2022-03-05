@@ -11,7 +11,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-public class RMICoordinator {
+public abstract class RMICoordinator {
 	final static Logger log = Logger.getLogger(RMICoordinator.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	static void configureLogger()
@@ -39,52 +39,19 @@ public class RMICoordinator {
 		//repeat with all other desired appenders
 	}
 	// Takes a port number to initialize the server
-	public RMICoordinator(String hostname, Integer portNumber) throws Exception
+	public RMICoordinator(String hostname, Integer portNumber,
+							CentralIndexingServerInterface rmiMethods) throws Exception
 	{		
 		// create the registry 
-		CentralIndexingServerInterface rmiMethods = new RMICoordinatorInterfaceImpl(portNumber);
 		LocateRegistry.createRegistry(portNumber);
 		//bind the method to this name so the client can search for it
 		String bindMe = "rmi://" + hostname + ":" + portNumber + "/Calls";
 		Naming.bind(bindMe, rmiMethods);
 		System.out.println("RMICoordinator started successfully");
 	}
-	public static void main(String args[])
+	public static void initialize(String args[])
 	{
 		configureLogger();
-		if(args.length != 2 )
-		{
-			System.out.println("Enter hostname");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			args = new String[2];
-			try{
-				System.out.println("Enter hostname");
-				args[0] = br.readLine();
-				System.out.println("Enter port");
-				args[1] = br.readLine();
-				}
-			catch(Exception e)
-			{
-				log.fatal("Fatal error : Usage - host port#" );
-				System.exit(-1);
-			}
-		}
-		Integer portNumber =0;
-		try{
-			portNumber = Integer.parseInt(args[1].trim());
-		}
-		catch(Exception e)
-		{
-			log.fatal(e.getMessage());
-			System.exit(-1);
-		}
-		try{
-			new RMICoordinator(args[0],portNumber);
-		}
-		catch(Exception e)
-		{
-			log.error("RMI coordinator binding failed with " + e.getMessage());
-		}
 	}
 
 }

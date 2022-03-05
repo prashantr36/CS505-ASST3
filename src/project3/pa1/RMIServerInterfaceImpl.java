@@ -37,7 +37,7 @@ import project3.io.RMIOutputStreamImpl;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class RMIServerInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, PeerInterface{
+public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, PeerInterface{
 	final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	private static HashMap<String, String> hash ;
@@ -298,5 +298,9 @@ public class RMIServerInterfaceImpl extends UnicastRemoteObject implements RMISe
 	public String RETRIEVE(String filename) throws RemoteException {
 		// TODO Auto-generated method stub
 		return GET(local_hostname + ":" + local_port, filename);
+	}
+	@Override
+	public String QUERY_HIT_MESSAGE(String string, String key, Object message)  throws RemoteException {
+		return null;
 	}
 }

@@ -28,7 +28,7 @@ import project3.io.RMIOutputStream;
 import project3.io.RMIOutputStreamImpl;
 
 @SuppressWarnings("serial")
-public class RMICoordinatorInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, CentralIndexingServerInterface{
+public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, CentralIndexingServerInterface{
 	final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	private static ConcurrentHashMap<String, LinkedHashSet<String>> hash ;
@@ -175,4 +175,13 @@ public class RMICoordinatorInterfaceImpl extends UnicastRemoteObject implements 
 	public String REGISTRY(String clientId, String filename) throws RemoteException {
 		return ASK("PUT", clientId, filename, "");
 	}
+	@Override
+	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException {
+		return "UNIMPLEMENTED";
+	}
+	@Override
+	public String PUSH_MESSAGE(String clientId, Object message) throws RemoteException {
+		return "UNIMPLEMENTED";
+	}
+	
 }
