@@ -34,13 +34,13 @@ class TestPeerToPeerMethods(unittest.TestCase):
     def test_a_new_file_gets_added(self):
         encoding = 'utf-8'
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=3', 
+                                               '-DserverChoice=4', 
                                                os.path.join(os.path.dirname(__file__),
                                                              'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('1. [Executed RETRIEVE AS Server 3 output:', out, ']')
+        print('1. [Executed RETRIEVE AS Server 4 output:', out, ']')
         #assert 'RETRIEVE :No such file on any peer' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
@@ -138,7 +138,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        #print('7. [EXECUTED REGISTRY AS Server 2 output:', out, ']')
+        print('7. [EXECUTED REGISTRY AS Server 1 output:', out, ']')
         assert 'ACCEPT' in out
         
         
@@ -150,6 +150,26 @@ class TestPeerToPeerMethods(unittest.TestCase):
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
         print('10. [EXECUTED DEREGISTRY AS Server 2 output:', out, ']')
+        assert 'ACCEPT' in out
+        
+        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
+                                               '-DserverChoice=3', 
+                                               os.path.join(os.path.dirname(__file__),
+                                                             'RMISuperPeerClient.jar'), 'DEREGISTER',
+                                                self.new_files[0]],stdout=subprocess.PIPE)
+        out, err = subprocess_output.communicate()
+        out = str(out.decode(encoding))
+        print('11. [EXECUTED DEREGISTRY AS Server 3 output:', out, ']')
+        assert 'ACCEPT' in out
+        
+        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
+                                               '-DserverChoice=4', 
+                                               os.path.join(os.path.dirname(__file__),
+                                                             'RMISuperPeerClient.jar'), 'DEREGISTER',
+                                                self.new_files[0]],stdout=subprocess.PIPE)
+        out, err = subprocess_output.communicate()
+        out = str(out.decode(encoding))
+        print('12. [EXECUTED DEREGISTRY AS Server 4 output:', out, ']')
         assert 'ACCEPT' in out
         
         encoding = 'utf-8'
