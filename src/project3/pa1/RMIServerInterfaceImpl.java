@@ -6,14 +6,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.nio.file.*;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -33,7 +37,7 @@ import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
 public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, PeerInterface{
-	final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
+	protected final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	private static HashMap<String, String> hash ;
 	private static String[][] hostPorts;
@@ -43,20 +47,33 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	public String coordinator_port;
 	public String coordinator_hostname;
 	private static final String ACCEPT = "ACCEPT";
-	private static final String ACK = "ACK";
+	protected static final String ACK = "ACK";
 	private static final String NACK = "NACK";
 	private static final int numCoordinators = 1;
 	final public static int BUF_SIZE = 1024 * 64;
 	public Runnable updateFolder;
+	protected List<String[]> coordinator_connections;
 	protected RMIServerInterfaceImpl(int portNumber) throws Exception {
 		super();
 		initializeServer();
 		local_port = "" + portNumber;
 		local_hostname = "localhost";
-		for(int y =0 ; y < numCoordinators; y++) {
-			coordinator_port = hostPorts[y][1];
-			coordinator_hostname = hostPorts[y][0];
+		this.coordinator_hostname ="";
+		for(Integer k: RMIClient.super_peer_indices.keySet()) {
+			for(Integer u: RMIClient.leaf_node_indices.get(k)) {
+				if(local_hostname.equalsIgnoreCase(hostPorts[u][0])
+					&& local_port.equalsIgnoreCase(hostPorts[u][1])) {
+					this.coordinator_hostname = hostPorts[RMIClient.super_peer_indices.get(k)][0];
+					this.coordinator_port = hostPorts[RMIClient.super_peer_indices.get(k)][1];
+					break;
+				}
+			}
+			if(!coordinator_hostname.isEmpty()) {
+				break;
+			}
 		}
+		this.coordinator_connections = new ArrayList<String[]>();
+		this.coordinator_connections.add(new String[] {coordinator_hostname, coordinator_port});
 		Runnable myRunnable = new FileWatcherDaemon(this);
 		this.updateFolder = myRunnable;
 	}
@@ -86,9 +103,11 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		//repeat with all other desired appenders
 	}
 	
-	protected void startBackGroundFolderThread() {
+	protected void startBackGroundFolderThread() throws IOException {
 		System.out.println("STARTED BACKGROUND THREAD");
+		Files.createDirectories(Paths.get("files"));
 		new Thread(this.updateFolder).start();
+		Files.createDirectories(Paths.get("files"));
 	}
 	
 	/*
@@ -97,7 +116,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	protected static void initializeServer() throws IOException
 	{
 		configureLogger();
-		Files.createDirectories(Paths.get("files"));
+		
 		hash = new HashMap<String, String>();
 		hostPorts= RMIClient.readConfigFile();
 	}
@@ -133,14 +152,16 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		int accept = 0;
 		String result = "";
 		String host = "";
-		int portNumber =0;
+		Integer portNumber =0;
 		// ASK proxies at other servers in cluster
 		for(int a = 0; a<numCoordinators; a++)
 		{
 			result = "";
 			try {
-				host = InetAddress.getByName(hostPorts[a][0]).getHostAddress();
-				portNumber = Integer.parseInt(hostPorts[a][1]);
+				host = coordinator_hostname;
+				portNumber = Integer.parseInt(coordinator_port);
+				System.out.println(" COORDINATOR_HOSTNAME " + coordinator_hostname
+							+ " coordinator_port " + portNumber);
 				LocateRegistry.getRegistry(coordinator_hostname, portNumber);
 				RMIServerInterface remoteImpl = (RMIServerInterface) Naming.lookup("rmi://" + host.trim() + ":" + portNumber + "/Calls" );
 				long startTime = System.currentTimeMillis(); //Timeout after 10s
@@ -173,6 +194,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		String response = "";
 		try {
 			LocateRegistry.getRegistry(coordinator_hostname, Integer.parseInt(coordinator_port));
+			
 			RMIServerInterface hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 			final String peer_to_contact = hostImpl.ASK("GET", clientId, key, "");
 			log.info("GET: key peer_to_contact  " + peer_to_contact);
@@ -224,6 +246,54 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			response = "No key "+ key + " matches db ";
 			log.error(e.getMessage());
 		}
+		return response;
+	}
+	
+	
+	public  String OBTAIN(String clientId, final String key) throws RemoteException
+	{
+		log.info("Server at " + local_hostname + ":" + local_port + " "+ "received [OBTAIN " + key + "] from client " + clientId);
+		String response = "";
+		try {
+			LocateRegistry.getRegistry(coordinator_hostname, Integer.parseInt(coordinator_port));
+		
+			RMIServerInterface hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
+		
+			final String peer_to_contact = clientId;
+			CompletableFuture
+	            .supplyAsync(() -> {
+	            	 try {
+		            	 Downloader downloader = new Downloader(peer_to_contact.split(":")[0], Integer.parseInt(peer_to_contact.split(":")[1]) + 1, key);
+				         downloader.start();
+				         
+	            	 } catch(Exception e) {
+	            		 throw new RuntimeException("socket closed unexpectedly or file not found.");   
+	            	 }
+	            	 try {
+						hostImpl.ASK("PUT", clientId, key, "");
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            	 return "File " + key + " Downloaded at " + clientId;
+	            }).exceptionally(ex -> {
+	            	try {
+						hostImpl.ASK("DELETE", clientId, key, "");
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            return "ERR: File cannot be downloaded exception"  + ex;
+		        }).thenApplyAsync(input -> input)
+			       .thenAccept(log::info);
+						
+				response = "File " + key + " Downloaded at " + clientId;}
+				catch(Exception e) {
+					System.out.println(e);
+					e.printStackTrace();
+					response = "No key "+ key + " matches db ";
+					log.error(e.getMessage());
+				}
 		return response;
 	}
 	
@@ -296,8 +366,19 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		// TODO Auto-generated method stub
 		return GET(local_hostname + ":" + local_port, filename);
 	}
+	
+	@Override
+	public String OBTAIN(String filename) throws RemoteException{
+		// TODO Auto-generated method stub
+		return OBTAIN(local_hostname + ":" + local_port, filename);
+	}
+	
 	@Override
 	public String QUERY_HIT_MESSAGE(String string, String key, Object message)  throws RemoteException {
+		return null;
+	}
+	@Override
+	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException {
 		return null;
 	}
 }

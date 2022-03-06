@@ -26,9 +26,9 @@ public abstract class Message implements Serializable {
     this(messageType);
     this.messageId = messageId;
   }
-  protected void prepareForward() throws DeadMessageException {
+  protected void prepareForward() throws MessageExpiredException {
     if (ttl-- <= 0) {
-      throw new DeadMessageException();
+      throw new MessageExpiredException();
     }
   }
   @Override

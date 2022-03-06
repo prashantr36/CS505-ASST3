@@ -42,4 +42,4 @@ find ../ -type f -name "*.txt" -exec touch {} +
 # Unit Test
 (cd "Instrument/RMIClient" && sh runJavaRMIClient.sh);
 # Integration test
-cd "Instrument/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py
+#cd "Instrument/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py

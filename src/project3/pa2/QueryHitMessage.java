@@ -1,18 +1,16 @@
 package project3.pa2;
 
-
-import java.net.InetAddress;
 public class QueryHitMessage extends Message {
-  protected QueryHitMessage(byte[] messageId, String[] matches, int fileServerPort) {
+  protected QueryHitMessage(byte[] messageId, String[] matches, String leaf_node_hostname, String leaf_node_port) {
     super(TYPE_ID);
-    this.fileServerPort = fileServerPort;
+    this.leaf_node_port = leaf_node_port;
     this.matches = matches;
-    this.address = null;
+    this.leaf_node_address = null;
     this.messageId = messageId;
   }
   private static final long serialVersionUID = 1L;
-  protected InetAddress address;// TODO rimettere protetti
-  protected int fileServerPort;
+  protected String leaf_node_address;
+  protected String leaf_node_port;
   protected String[] matches;
   protected int[] sizes;
   public static final byte TYPE_ID = (byte) 0x81;

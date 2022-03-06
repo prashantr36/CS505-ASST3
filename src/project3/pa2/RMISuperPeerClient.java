@@ -1,16 +1,31 @@
 package project3.pa2;
 
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import project3.pa1.RMIClient;
-import project3.pa1.RMIClient.RMIMetadata;
 
 public class RMISuperPeerClient extends RMIClient {
-  private Hashtable<Message, RMIMetadata> seen;
-  protected RMISuperPeerClient() {
-    seen = new Hashtable<Message, RMIMetadata>();
+  private LinkedHashMap<Message, RMIMetadata> seen;
+  private static String my_localhost;
+  private static String my_port;
+  final int MAX = 1000;
+  protected RMISuperPeerClient(String my_localhost, String my_port) {
+	seen = new LinkedHashMap<Message, RMIMetadata>() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		protected boolean removeEldestEntry(Map.Entry<Message, RMIMetadata> eldest)
+        {
+            return size() > MAX;
+        }
+    };
+    RMISuperPeerClient.my_localhost = my_localhost;
+    RMISuperPeerClient.my_port = my_port;
   }
-  void setSeen(Message msg, RMIMetadata origin) {
+  synchronized void setSeen(Message msg, RMIMetadata origin) {
     seen.put(msg, origin);
   }
   boolean haveSeen(Message msg) {
@@ -19,10 +34,10 @@ public class RMISuperPeerClient extends RMIClient {
   RMIMetadata getDestination(Message msg) {
     return seen.get(msg);
   }
-  void removeSeen(Message msg) {
-    seen.remove(msg);
-  }
   public static void main(String args[]) {
 	  RMIClient.main(args);
   }
+  public static void forward(Object message, String key, String command, RMIMetadata rmi_metadata) {
+	  forwarder(rmi_metadata, key, "", -1, my_localhost + ":" + my_port, command, message);
+  } 
 }

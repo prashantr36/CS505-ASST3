@@ -17,5 +17,7 @@ public interface RMIServerInterface extends Remote{
 	public String ASK(String command, String clientId, String key, String value) throws RemoteException;
 	public OutputStream getOutputStream(File f) throws IOException;
 	public InputStream getInputStream(File f) throws IOException;
+	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException;
 	public String QUERY_HIT_MESSAGE(String string, String key, Object message) throws RemoteException;
+	public String OBTAIN(String filename)throws RemoteException;
 }

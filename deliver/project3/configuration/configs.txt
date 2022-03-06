@@ -7,4 +7,10 @@ localhost 2345
 localhost 3445
 localhost 4542
 localhost 5334
-#Topology = Star
+Gnutella2
+localhost 1237
+localhost 2348
+localhost 3448
+localhost 4545
+localhost 5337
+#Topology = all_to_all
