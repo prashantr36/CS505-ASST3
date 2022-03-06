@@ -97,7 +97,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                                                '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
                                                              'RMISuperPeerClient.jar'), 'RETRIEVE',
-                                                'unknown.txt',stdout=subprocess.PIPE)
+                                                self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
         print('7. [Executed RETRIEVE AS Server 3 output:', out, ']')
