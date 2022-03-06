@@ -21,6 +21,7 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
 		QueryMessage query = (QueryMessage) message;
 		System.out.println("Received Query message from " + clientId + " " + message
 				+ " at " + hostname + " port " + port);
+		
         if (rmi_super_peer_client.haveSeen(query)) {
         	System.out.println("Has been seen! Query message from " + clientId + " " + message
     				+ " at " + hostname + " port " + port);
@@ -33,25 +34,34 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
         String dst_source = clientId.split(":")[0];
         String dst_port = clientId.split(":")[1];
         
-        RMIMetadata rmi_metadata = new RMIMetadata(dst_source, dst_port, hostname, port +"");
+        RMIMetadata rmi_metadata = new RMIMetadata(hostname, port +"", dst_source, dst_port);
         rmi_super_peer_client.setSeen(query, rmi_metadata);
-        System.out.println("CAME HERE 1");
         try {
-          query.prepareForward();
+          query.decrementTimeToLiveCounter();
           for(String[] coordinator_connects: this.coordinator_connections) {
-        	  rmi_metadata.dst_hostname = coordinator_connects[0];
-        	  rmi_metadata.dst_port = coordinator_connects[1];
-        	  RMISuperPeerClient.forward(message, query.key, "QUERY_MESSAGE", rmi_metadata);
+        	  RMIMetadata rm_metadata_copy = new RMIMetadata(hostname, port +"", coordinator_connects[0],
+        			  											coordinator_connects[1]);
+        	  rm_metadata_copy.dst_hostname = coordinator_connects[0];
+        	  rm_metadata_copy.dst_port = coordinator_connects[1];
+        	  System.out.println("SUPER PEER MAKING QUERY_MESSAGE OUT " + " with message " + message + " rmi_metadata "
+						+ rm_metadata_copy + " hostname " + hostname + " port " + port + " After receiving from "
+        	  				+ clientId);
+        	  RMISuperPeerClient.forward(message, hostname + ":" + port, query.key, "QUERY_MESSAGE", rm_metadata_copy);
           }
         } catch (MessageExpiredException e) {
         }
-        System.out.println("CAME HERE 2 ");
         String[] matches = getMatches(query.key).toArray(new String[0]);
-        System.out.println(" MATCHES FOUND " + Arrays.toString(matches) + " FOR KEY " + query.key);
+        for(String match: matches) {
+        	if(clientId.equalsIgnoreCase(match)) {
+        		// If request has already been fulfilled, early terminate
+        		// without QUERY_HIT_MESSAGE
+        		return ACK;
+        	}
+        }
         if (matches.length > 0) {
           QueryHitMessage hit = new QueryHitMessage(query.messageId, matches,
                   hostname, port + "");
-          RMISuperPeerClient.forward(hit, query.key, "QUERY_HIT_MESSAGE", new RMIMetadata(hostname, port +"", rmi_metadata.src_hostname, rmi_metadata.src_port));
+          RMISuperPeerClient.forward(hit, hostname + ":" + port, query.key, "QUERY_HIT_MESSAGE", new RMIMetadata(hostname, port +"", rmi_metadata.dst_hostname, rmi_metadata.dst_port));
         }
         return ACK;
 	}
@@ -60,20 +70,22 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
 	public String QUERY_HIT_MESSAGE(String clientId, String key, Object message) throws RemoteException {
 		QueryHitMessage query_hit_message = (QueryHitMessage) message;
 		RMIMetadata conn = rmi_super_peer_client.getDestination(query_hit_message);
-        if (conn == null) {
+		if (conn == null) {
           return "Invalid connection";
         }
         QueryHitMessage hit = (QueryHitMessage) message;
           try {
-            query_hit_message.prepareForward();
-            RMISuperPeerClient.forward(hit, key, "QUERY_HIT_MESSAGE", new RMIMetadata(hostname, port +"", conn.src_hostname, conn.src_port));
+            query_hit_message.decrementTimeToLiveCounter();
+            RMISuperPeerClient.forward(hit, hostname + ":" + port, key, "QUERY_HIT_MESSAGE", new RMIMetadata(conn.src_hostname, conn.src_port
+            												, conn.dst_hostname, conn.dst_port));
           } catch (MessageExpiredException e) {
+        	  log.info(query_hit_message + " " + "Expired TTL");
           }
         return ACK;
 	}
 
 	@Override
-	public String OBTAIN(String filename) throws RemoteException {
+	public String OBTAIN(String clientId, String filename) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -104,7 +104,6 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	}
 	
 	protected void startBackGroundFolderThread() throws IOException {
-		System.out.println("STARTED BACKGROUND THREAD");
 		Files.createDirectories(Paths.get("files"));
 		new Thread(this.updateFolder).start();
 		Files.createDirectories(Paths.get("files"));
@@ -160,8 +159,6 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			try {
 				host = coordinator_hostname;
 				portNumber = Integer.parseInt(coordinator_port);
-				System.out.println(" COORDINATOR_HOSTNAME " + coordinator_hostname
-							+ " coordinator_port " + portNumber);
 				LocateRegistry.getRegistry(coordinator_hostname, portNumber);
 				RMIServerInterface remoteImpl = (RMIServerInterface) Naming.lookup("rmi://" + host.trim() + ":" + portNumber + "/Calls" );
 				long startTime = System.currentTimeMillis(); //Timeout after 10s
@@ -241,7 +238,6 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 							
 			response = "File " + key + " Downloaded at " + clientId;
 		} catch(Exception e) {
-			System.out.println(e);
 			e.printStackTrace();
 			response = "No key "+ key + " matches db ";
 			log.error(e.getMessage());
@@ -249,7 +245,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		return response;
 	}
 	
-	
+	@Override
 	public  String OBTAIN(String clientId, final String key) throws RemoteException
 	{
 		log.info("Server at " + local_hostname + ":" + local_port + " "+ "received [OBTAIN " + key + "] from client " + clientId);
@@ -289,7 +285,6 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 						
 				response = "File " + key + " Downloaded at " + clientId;}
 				catch(Exception e) {
-					System.out.println(e);
 					e.printStackTrace();
 					response = "No key "+ key + " matches db ";
 					log.error(e.getMessage());
@@ -324,7 +319,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
     
 
 	public OutputStream getOutputStream(File f) throws IOException {
-		System.out.println("Upload file: " + f.getName());
+		log.info("Upload file: " + f.getName());
 	    return new RMIOutputStream(new RMIOutputStreamImpl(new FileOutputStream(f)));
 	}
 	
@@ -365,12 +360,6 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	public String RETRIEVE(String filename) throws RemoteException {
 		// TODO Auto-generated method stub
 		return GET(local_hostname + ":" + local_port, filename);
-	}
-	
-	@Override
-	public String OBTAIN(String filename) throws RemoteException{
-		// TODO Auto-generated method stub
-		return OBTAIN(local_hostname + ":" + local_port, filename);
 	}
 	
 	@Override

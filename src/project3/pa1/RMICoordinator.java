@@ -42,7 +42,6 @@ public abstract class RMICoordinator {
 	public RMICoordinator(String hostname, Integer portNumber,
 							CentralIndexingServerInterface rmiMethods) throws Exception
 	{	
-		System.out.println(" RMICOORDINATOR CALLED ");
 		// create the registry 
 		LocateRegistry.createRegistry(portNumber);
 		//bind the method to this name so the client can search for it

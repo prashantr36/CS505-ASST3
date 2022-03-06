@@ -37,7 +37,7 @@ public class RMISuperPeerClient extends RMIClient {
   public static void main(String args[]) {
 	  RMIClient.main(args);
   }
-  public static void forward(Object message, String key, String command, RMIMetadata rmi_metadata) {
-	  forwarder(rmi_metadata, key, "", -1, my_localhost + ":" + my_port, command, message);
+  public static void forward(Object message, String clientId, String key, String command, RMIMetadata rmi_metadata) {
+	  forwarder(rmi_metadata, key, "", -1, clientId, command, message);
   } 
 }

@@ -64,7 +64,7 @@ public abstract class RMIServer {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.exit(-1);
 		}
 		 // create server socket
@@ -86,7 +86,6 @@ public abstract class RMIServer {
                 Thread t = new Thread(new ServerThread(socket));
                 tlist.add(t);
                 t.start();
-                System.out.println(" STARTED THE LISTENING SOCKET ");
 
             } catch (Exception e) {
 
@@ -94,7 +93,6 @@ public abstract class RMIServer {
                 for (Thread t: tlist) {
                     t.join();
                 }
-                System.out.println("server main thread exited");
                 return;
             }
         }

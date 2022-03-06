@@ -16,7 +16,6 @@ while read line;do
 		((Server_Name = 0))
 		continue
 	fi
-	echo "SOMETHING"
 	[ -z "$line" ] && continue
 	[[ -z "${line// }" ]] && continue
 	if [[ "$Gnutella_Name" -eq 0 ]]; then
@@ -24,12 +23,9 @@ while read line;do
 	fi
 	
 	if [[ "$Server_Name" -eq 0 ]]; then
-		echo "Coordinator "		
-		echo $line
 		(cd "Gnutella-$Gnutella_Name/RMICoordinator" && java -jar SuperPeer.jar $line &)
 		((++Server_Name))
 	else
-		echo "Server "	
 		(cd "Gnutella-$Gnutella_Name/RMIServer$Server_Name" && java -jar LeafNode.jar $line &)
 		((++Server_Name))
 	fi

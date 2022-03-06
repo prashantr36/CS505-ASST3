@@ -96,7 +96,6 @@ public abstract class RMIClient {
 
 		try {
 			BufferedReader fileReader = new BufferedReader(new FileReader("../../configuration/configs.txt"));
-			System.out.println("Loading configurations from configs.txt..");
 			int c = 0;
 			int super_peer_index = 0;
 			int leaf_node_index = 0;
@@ -144,7 +143,7 @@ public abstract class RMIClient {
 			fileReader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("System exited with error " + e.getMessage());
+			e.printStackTrace();
 			System.exit(-1);
 		}
 		return hostPorts;
@@ -198,21 +197,21 @@ public abstract class RMIClient {
 			String port = rmiMetadata.src_port;
 			
 			// locate the remote object initialize the proxy using the binder
-			int my_server_index = 0;
+			int dest_server_index = 0;
 			for (int t = 0; t < hostPorts.length; t++) {
 				if (coordinator_hostname.equalsIgnoreCase(hostPorts[t][0]) && (coordinator_port + "").equalsIgnoreCase(hostPorts[t][1])) {
-					my_server_index = t;
+					dest_server_index = t;
 					break;
 				}
 			}
-			System.out.println(command + " MY SERVERE INDEX " + my_server_index);
+			System.out.println(command + " DESTINATION SERVERE INDEX " + dest_server_index
+								+ rmiMetadata + " message " + message);
 			// Is the destination a coordinator or is a peer
 			RMIServerInterface hostImpl = null;
 			CentralIndexingServerInterface coordinatorHostImpl = null;
 			boolean is_destination_coordinator = false;
-			if (super_peer_indices.values().contains(my_server_index)) {
+			if (super_peer_indices.values().contains(dest_server_index)) {
 				is_destination_coordinator = true;
-				System.out.println(" IS COORDINATOR");
 				coordinatorHostImpl = (CentralIndexingServerInterface) Naming
 						.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls");
 			} else {
@@ -222,9 +221,7 @@ public abstract class RMIClient {
 			// call the corresponding methods
 			key = key.trim();
 			values = values.trim();
-			if (System.getProperty("clientId") != null)
-				clientId = System.getProperty("clientId");
-
+			
 			switch (command.trim().toUpperCase()) {
 			case "GET":
 				log.info(
@@ -235,8 +232,7 @@ public abstract class RMIClient {
 						+ hostImpl.GET(hostname + ":" + port, key));
 				break;
 			case "OBTAIN":
-				log.info("Client on Server #" + serverNum + " RUNNING OBTAIN :"
-						+ hostImpl.OBTAIN(key));
+					hostImpl.OBTAIN(hostname + ":" + port, key);
 				break;
 			case "SEARCH":
 				log.info("Client on Server #" + serverNum + " RUNNING SEARCH :" + coordinatorHostImpl.SEARCH(key));
@@ -268,14 +264,17 @@ public abstract class RMIClient {
 			case "QUERY_MESSAGE":
 				if (message instanceof Serializable) {
 					if (is_destination_coordinator)
-						log.info("Client on Server #" + serverNum + " RUNNING QUERY MESSAGE "
-								+ coordinatorHostImpl.QUERY_MESSAGE(hostname + ":" + port, message));
+						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE "
+								+ " as Super Peer the Message " + message + 
+								coordinatorHostImpl.QUERY_MESSAGE(hostname + ":" + port, message));
 				} else {
 					if (!is_destination_coordinator) {
-						log.info("Client on Server #" + serverNum + " RUNNING QUERY MESSAGE "
-								+ hostImpl.QUERY_MESSAGE(hostname + ":" + port, new QueryMessage(key)));
+						QueryMessage q_message = new QueryMessage(key);
+						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE "
+								+ " as Leaf Node the Message " + q_message + 
+								hostImpl.QUERY_MESSAGE(hostname + ":" + port, q_message));
 					} else {
-						log.error("Error Client on Server #" + serverNum + " RUNNING QUERY MESSAGE: "
+						log.error("Error Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE: "
 								+ " garbled message.");
 					}
 				}
@@ -283,15 +282,19 @@ public abstract class RMIClient {
 			case "QUERY_HIT_MESSAGE":
 				if (message instanceof Serializable)
 					if (is_destination_coordinator)
-						log.info("Client on Server #" + serverNum + " RUNNING QUERY_HIT MESSAGE "
-								+ coordinatorHostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
+						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY_HIT MESSAGE "
+								+ message + " result " +
+								coordinatorHostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
 					else {
-						log.info("Client on Server #" + serverNum + " RUNNING QUERY_HIT MESSAGE "
-								+ hostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
+						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY_HIT MESSAGE "
+								+ message + " result " +
+								hostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
 					}
-
-				log.error(
-						"Error Client on Server #" + serverNum + " RUNNING QUERY_HIT MESSAGE: " + " garbled message.");
+				else {
+					log.error(
+							"Error Client on Server #" + rmiMetadata + " RUNNING QUERY_HIT MESSAGE: " + " garbled message."
+					+ " KEY " + key + " Command " + command + " message " + message);
+				}
 				break;
 
 			default:

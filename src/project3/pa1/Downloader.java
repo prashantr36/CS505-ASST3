@@ -33,8 +33,7 @@ public class Downloader {
         byte[] buffer = new byte[size];
         Socket socket;
         try {
-        	System.out.println(" TRYING TO ASSIGN " + host + " and " + port);
-            socket = new Socket(host, port);
+        	socket = new Socket(host, port);
         } catch (Exception e) {
             throw e;
         }

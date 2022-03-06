@@ -54,8 +54,6 @@ public class ServerThread implements Runnable {
         // transfer command and key
         OutputStream out = socket.getOutputStream();
         
-        // upload file
-        System.out.println("ready to upload " + filename);
         try {
             int len = fin.read(buffer);
             while(len > 0) {
@@ -64,7 +62,6 @@ public class ServerThread implements Runnable {
             }
             fin.close();
             socket.close();
-            System.out.println("finished uploading " + filename);
         } catch (Exception e) {
             System.out.println("uploader socket exception");
             fin.close();

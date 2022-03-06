@@ -47,8 +47,6 @@ public class LeafNode extends RMIServer {
 	
 	
 	public static void main(String args[]) throws Exception{
-		System.out.println(" LEAF NODE CALLED ");
-		log.info("LEAF NODE CALLED ");
 		initalize(args);
 	}
 }

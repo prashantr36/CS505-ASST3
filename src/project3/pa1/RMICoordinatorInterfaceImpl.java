@@ -34,7 +34,7 @@ import project3.io.RMIOutputStreamImpl;
 
 @SuppressWarnings("serial")
 public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, CentralIndexingServerInterface{
-	final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
+	protected final static Logger log = Logger.getLogger(RMIServerInterfaceImpl.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	private static ConcurrentHashMap<String, LinkedHashSet<String>> hash ;
 	private static String[][] hostPorts;

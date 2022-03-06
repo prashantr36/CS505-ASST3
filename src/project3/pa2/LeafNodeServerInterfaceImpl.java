@@ -1,6 +1,7 @@
 package project3.pa2;
 
 import java.rmi.RemoteException;
+import java.util.Arrays;
 
 import project3.pa1.RMIClient.RMIMetadata;
 import project3.pa1.RMICoordinatorInterfaceImpl;
@@ -22,13 +23,13 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
         String dst_port = clientId.split(":")[1];
         RMIMetadata rmi_metadata = new RMIMetadata(local_hostname, local_port +"", dst_source, dst_port);
         try {
-          query.prepareForward();
+          query.decrementTimeToLiveCounter();
           for(String[] coordinator_connects: this.coordinator_connections) {
         	  rmi_metadata.dst_hostname = coordinator_connects[0];
         	  rmi_metadata.dst_port = coordinator_connects[1];
-        	  log.info("FORWARDING to " + rmi_metadata.dst_hostname + " : " + rmi_metadata.dst_port
-        			  + " from " + clientId);
-        	  RMISuperPeerClient.forward(message, query.key, "QUERY_MESSAGE", rmi_metadata);
+        	  System.out.println(" BEGIN FWD AT " + local_hostname + " " + local_port
+        			   + " -> " + Arrays.toString(coordinator_connects));
+        	  RMISuperPeerClient.forward(message, local_hostname + ":" + local_port, query.key, "QUERY_MESSAGE", rmi_metadata);
           }
         } catch (MessageExpiredException e) {
         }
@@ -49,6 +50,8 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 	}
 	
 	public void obtain(String filename, RMIMetadata rmi_metadata) {
-		RMISuperPeerClient.forward(null, filename, "OBTAIN", rmi_metadata);
+		log.info(" RUNNIGN OBTAIN " + filename + " on RMIMetadata " + rmi_metadata
+							+ " local_hostname " + local_hostname + " local_port " + local_port);
+		RMISuperPeerClient.forward(null, local_hostname + ":" + local_port,  filename, "OBTAIN", rmi_metadata);
 	}
 }
