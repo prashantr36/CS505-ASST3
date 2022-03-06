@@ -16,26 +16,23 @@ while read line;do
 		((Server_Name = 0))
 		continue
 	fi
+	echo "SOMETHING"
 	[ -z "$line" ] && continue
-	[[ -z "${param// }" ]] && continue
-	if [[ $line = *[!\ ]* ]]; then
-		if [[ "$Gnutella_Name" -eq 0 ]]; then
-			continue
-		fi
-		echo "Passed"		
-		echo $line
-  	if [[ "$Server_Name" -eq 0 ]]; then
-			(cd "Gnutella-$Gnutella_Name/RMICoordinator" && java -jar SuperPeer.jar $line &)
-			((++Server_Name))
-		else
-			(cd "Gnutella-$Gnutella_Name/RMIServer$Server_Name" && java -jar LeafNode.jar $line &)
-			((++Server_Name))
-		fi
-	else
+	[[ -z "${line// }" ]] && continue
+	if [[ "$Gnutella_Name" -eq 0 ]]; then
 		continue
 	fi
 	
-	
+	if [[ "$Server_Name" -eq 0 ]]; then
+		echo "Coordinator "		
+		echo $line
+		(cd "Gnutella-$Gnutella_Name/RMICoordinator" && java -jar SuperPeer.jar $line &)
+		((++Server_Name))
+	else
+		echo "Server "	
+		(cd "Gnutella-$Gnutella_Name/RMIServer$Server_Name" && java -jar LeafNode.jar $line &)
+		((++Server_Name))
+	fi
 done < $FILE
 for i in {1..5}; do 
   printf '\r%2d' $i
@@ -43,6 +40,6 @@ for i in {1..5}; do
 done
 find ../ -type f -name "*.txt" -exec touch {} +
 # Unit Test
-(cd "Gnutella-1/RMIClient" && sh runJavaRMIClient.sh);
+(cd "Instrument/RMIClient" && sh runJavaRMIClient.sh);
 # Integration test
-cd "Gnutella-1/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py
+cd "Instrument/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py

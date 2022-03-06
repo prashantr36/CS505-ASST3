@@ -42,10 +42,13 @@ public class LeafNode extends RMIServer {
 		}
 		rmi_server = new LeafNode(args[0], portNumber);
 		rmi_server.initialize(args);
+		rmi_server.log.info("HELLO ");
 	}
 	
 	
 	public static void main(String args[]) throws Exception{
-		initialize(args);
+		System.out.println(" LEAF NODE CALLED ");
+		log.info("LEAF NODE CALLED ");
+		initalize(args);
 	}
 }

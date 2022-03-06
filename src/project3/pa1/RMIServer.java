@@ -46,7 +46,7 @@ public abstract class RMIServer {
 	}
 	// Takes a port number to initialize the server
 	public RMIServer(String hostname, Integer portNumber, RMIServerInterface rmiMethods) throws Exception
-	{		
+	{	
 		RMIServerInterfaceImpl rmi = (RMIServerInterfaceImpl) rmiMethods;
 		rmi.startBackGroundFolderThread();
 		LocateRegistry.createRegistry(portNumber);
@@ -86,6 +86,7 @@ public abstract class RMIServer {
                 Thread t = new Thread(new ServerThread(socket));
                 tlist.add(t);
                 t.start();
+                System.out.println(" STARTED THE LISTENING SOCKET ");
 
             } catch (Exception e) {
 

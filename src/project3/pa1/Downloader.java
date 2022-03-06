@@ -1,8 +1,11 @@
 package project3.pa1;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Downloader {
 

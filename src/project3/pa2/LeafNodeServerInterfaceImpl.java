@@ -12,7 +12,7 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected LeafNodeServerInterfaceImpl(int portNumber) throws RemoteException {
+	protected LeafNodeServerInterfaceImpl(int portNumber) throws Exception {
 		super(portNumber);
 		// TODO Auto-generated constructor stub
 	}

@@ -41,13 +41,14 @@ public abstract class RMICoordinator {
 	// Takes a port number to initialize the server
 	public RMICoordinator(String hostname, Integer portNumber,
 							CentralIndexingServerInterface rmiMethods) throws Exception
-	{		
+	{	
+		System.out.println(" RMICOORDINATOR CALLED ");
 		// create the registry 
 		LocateRegistry.createRegistry(portNumber);
 		//bind the method to this name so the client can search for it
 		String bindMe = "rmi://" + hostname + ":" + portNumber + "/Calls";
 		Naming.bind(bindMe, rmiMethods);
-		System.out.println("RMICoordinator started successfully");
+		System.out.println("RMICoordinator started successfully " + hostname + " " + portNumber);
 	}
 	public static void initialize(String args[])
 	{

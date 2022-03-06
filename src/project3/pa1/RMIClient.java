@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.Naming;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,10 +24,8 @@ public abstract class RMIClient {
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
 	final static int maxNumReplicas = 5000;
 	final static int hostPortColumn = 2;
-	static String my_localhost;
-	static String my_port;
 	static HashMap<Integer, Integer> super_peer_indices;
-	static HashMap<Integer, Integer> leaf_node_indices;
+	static HashMap<Integer, List<Integer>> leaf_node_indices;
 	
 	static void configureLogger()
 	{
@@ -71,14 +70,22 @@ public abstract class RMIClient {
 			 this.src_port = src_port;
 			 this.dst_hostname = dst_hostname;
 			 this.dst_port = dst_port;
-		 }		
+		 }
+		public RMIMetadata() {
+			// TODO Auto-generated constructor stub
+		}
+		@Override
+		public String toString() {
+			return "RMIMetadata [src_hostname=" + src_hostname + ", src_port=" + src_port + ", dst_hostname="
+					+ dst_hostname + ", dst_port=" + dst_port + "]";
+		}		
 	}
 	
 	public static String[][] readConfigFile()
 	{		
 		String hostPorts [][] = new String[maxNumReplicas][hostPortColumn];
-		HashMap<Integer, Integer> super_peer_indices = new HashMap<Integer, Integer>();
-		HashMap<Integer, List<Integer>> leaf_node_indices = new HashMap<Integer, List<Integer>>();
+		super_peer_indices = new HashMap<Integer, Integer>();
+		leaf_node_indices = new HashMap<Integer, List<Integer>>();
 		
 		try {
 			BufferedReader fileReader = new BufferedReader(new FileReader("../../configuration/configs.txt"));			
@@ -86,19 +93,33 @@ public abstract class RMIClient {
 			int c = 0;
 			int super_peer_index = 0;
 			int leaf_node_index = 0;
-			while(fileReader.read() != -1)
+			
+			String str ="";
+			while((str = fileReader.readLine()) != null)
 			{
-				c++;
-				hostPorts[c-1] = fileReader.readLine().split("\\s+");
+				 String splits[] = str.split("\\s+");
+				 if(splits.length != 2) {
+					  if(splits[0].contains("Gnutella")) {
+							super_peer_indices.putIfAbsent(super_peer_index + 1, new Integer(-1));
+							super_peer_index += 1;
+							leaf_node_indices.putIfAbsent(leaf_node_index + 1, new LinkedList<Integer>());
+							leaf_node_index += 1;
+					 }
+					 continue;
+				 } else {
+					 if(splits[0].isEmpty() || 
+								!splits[1].matches("[0-9]+") ||
+								splits[1].isEmpty())
+						 continue;
+					
+					 c++;
+					 hostPorts[c-1][0] = splits[0];
+					 hostPorts[c-1][1] = splits[1];
+					 
+				 }
 				if(hostPorts[c-1][0].isEmpty() || 
 						!hostPorts[c-1][1].matches("[0-9]+") ||
 						hostPorts[c-1][1].isEmpty()) {
-					if(hostPorts[c-1][0].contains("Gnutella")) {
-						super_peer_indices.putIfAbsent(super_peer_index + 1, new Integer(-1));
-						super_peer_index += 1;
-						leaf_node_indices.putIfAbsent(leaf_node_index + 1, new LinkedList<Integer>());
-						leaf_node_index += 1;
-					}
 				} else {
 					if(super_peer_indices.containsKey(super_peer_index)
 							&& super_peer_indices.get(super_peer_index) == -1) {
@@ -139,14 +160,24 @@ public abstract class RMIClient {
 			key = args[1];
 			for(int a = 2; a <args.length; a++)
 				values +=" " + args[a];
+			clientId = System.getProperty("clientId");
 			serverNum = Integer.parseInt(System.getProperty("serverChoice"));
 		}
-		String coordinator_hostname = hostPorts[0][0];
-		String coordinator_port = hostPorts[0][1];
 		
-		String hostname = hostPorts[serverNum-1][0];
-		String port = hostPorts[serverNum-1][1];
+		int client_id = Integer.parseInt(clientId);
 		
+		
+		//System.out.println(" super_peer_indices " + super_peer_indices);
+		//System.out.println(" leaves " + leaf_node_indices);
+		
+		
+		
+		String coordinator_hostname = hostPorts[super_peer_indices.get(client_id)][0];
+		String coordinator_port = hostPorts[super_peer_indices.get(client_id)][1];
+		
+		String hostname = hostPorts[leaf_node_indices.get(client_id).get(serverNum-1)][0];
+		String port = hostPorts[leaf_node_indices.get(client_id).get(serverNum-1)][1];
+				
 		forwarder(new RMIMetadata(coordinator_hostname,
 				  coordinator_port, 
 				  hostname,
@@ -180,6 +211,8 @@ public abstract class RMIClient {
 			String hostname = rmiMetadata.dst_hostname;
 			String port = rmiMetadata.dst_port;
 			
+			
+			log.info(" RMIMETADATA " + rmiMetadata);
 			// Locate the Coordinator
 			CentralIndexingServerInterface coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 			
@@ -204,7 +237,7 @@ public abstract class RMIClient {
 				log.info("Client on Server #" + serverNum + " RUNNING SEARCH :" + coordinatorHostImpl.SEARCH(key));
 				break;
 			case "REGISTRY":
-				Path path = Paths.get("../RMIServer" + (serverNum-1) + "/files/" + key);
+				Path path = Paths.get("../../Gnutella-" + (clientId) + "/RMIServer" + (serverNum) + "/files/" + key);
 				if (Files.exists(path)) {
 					log.info("Client on Server #" + serverNum + " RUNNING REGISTRY :" + coordinatorHostImpl.REGISTRY(hostname + ":" + port,key));
 				} else {

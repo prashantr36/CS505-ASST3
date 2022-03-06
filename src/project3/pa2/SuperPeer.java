@@ -2,7 +2,6 @@ package project3.pa2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.rmi.RemoteException;
 
 import project3.pa1.CentralIndexingServerInterface;
 import project3.pa1.RMICoordinator;
@@ -42,10 +41,11 @@ public class SuperPeer extends RMICoordinator {
 			System.exit(-1);
 		}
 		new SuperPeer(args[0], portNumber).initialize(args);
+		
 	}
 	
 	
 	public static void main(String args[]) throws Exception{
-		initialize(args);
+		initalize(args);
 	}	
 }

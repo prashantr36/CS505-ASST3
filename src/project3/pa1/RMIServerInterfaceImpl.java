@@ -7,12 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.file.FileSystems;
-
 import java.nio.file.*;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -53,7 +48,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	private static final int numCoordinators = 1;
 	final public static int BUF_SIZE = 1024 * 64;
 	public Runnable updateFolder;
-	protected RMIServerInterfaceImpl(int portNumber) throws RemoteException {
+	protected RMIServerInterfaceImpl(int portNumber) throws Exception {
 		super();
 		initializeServer();
 		local_port = "" + portNumber;
@@ -92,15 +87,17 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	}
 	
 	protected void startBackGroundFolderThread() {
+		System.out.println("STARTED BACKGROUND THREAD");
 		new Thread(this.updateFolder).start();
 	}
 	
 	/*
 	 * Setup server when constructor is called
 	 */
-	protected static void initializeServer()
+	protected static void initializeServer() throws IOException
 	{
 		configureLogger();
+		Files.createDirectories(Paths.get("files"));
 		hash = new HashMap<String, String>();
 		hostPorts= RMIClient.readConfigFile();
 	}

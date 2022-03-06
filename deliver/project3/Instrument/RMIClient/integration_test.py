@@ -15,11 +15,11 @@ class TestPeerToPeerMethods(unittest.TestCase):
         self.new_files = []
         length = 10000
         letters = string.ascii_lowercase
+        print('setup')
         def get_parent_dir(directory):
             import os
             return os.path.dirname(directory)
-
-        for dirs in os.walk(get_parent_dir(os.getcwd()) + "/RMIServer1/files"):
+        for dirs in os.walk((get_parent_dir(get_parent_dir(os.getcwd()))) + "/Gnutella-1/RMIServer1/files"):
             d = dirs[0]
             print(d)
             for i in range(4):
@@ -34,73 +34,73 @@ class TestPeerToPeerMethods(unittest.TestCase):
     def test_a_new_file_gets_added(self):
         encoding = 'utf-8'
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
+                                               '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('1. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        print('1. [Executed RETRIEVE AS Server 3 output:', out, ']')
         #assert 'RETRIEVE :No such file on any peer' in out
-        
-        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
-                                               os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
-                                                self.new_files[0]],stdout=subprocess.PIPE)
-        out, err = subprocess_output.communicate()
-        out = str(out.decode(encoding))
-        print('2. [Executed RETRIEVE AS Server 4 output:', out, ']')
-        #assert 'No such file on any peer' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'SEARCH',
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('3. [Executed SEARCH AS Server 3 output:', out, ']')
-        assert 'SEARCH :localhost:2345' in out
-        
+        print('2. [Executed RETRIEVE AS Server 3 output:', out, ']')
+        #assert 'No such file on any peer' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'REGISTRY',
+                                                             'RMISuperPeerClient.jar'), 'SEARCH',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('5. [Executed REGISTER AS Server 2 output:', out, ' for file ', self.new_files[0], ']')
+        print('3. [Executed SEARCH AS Server 2 output:', out, ']')
+        assert 'SEARCH :localhost:2345' in out
+        
+        
+        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
+                                               '-DserverChoice=1', 
+                                               os.path.join(os.path.dirname(__file__),
+                                                             'RMISuperPeerClient.jar'), 'REGISTRY',
+                                                self.new_files[0]],stdout=subprocess.PIPE)
+        out, err = subprocess_output.communicate()
+        out = str(out.decode(encoding))
+        print('5. [Executed REGISTER AS Server 1 output:', out, ' for file ', self.new_files[0], ']')
         assert 'ACCEPT' in out
                 
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=3', 
+                                               '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'SEARCH',
+                                                             'RMISuperPeerClient.jar'), 'SEARCH',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('6. [Executed SEARCH AS Server 3 output:', out, ']') 
+        print('6. [Executed SEARCH AS Server 2 output:', out, ']') 
         assert 'SEARCH :localhost:2345' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
+                                               '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
         assert 'RETRIEVE :File ' +self.new_files[0] + ' Downloaded' in out
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
+                                               '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
-                                                self.new_files[0]],stdout=subprocess.PIPE)
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
+                                                'unknown.txt',stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('7. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        print('7. [Executed RETRIEVE AS Server 3 output:', out, ']')
         #assert 'java.io.FileNotFoundException: files/' + self.new_files[0] +  ' (No such file or directory)' in out
         
         
@@ -109,32 +109,32 @@ class TestPeerToPeerMethods(unittest.TestCase):
         
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
-                                               os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
-                                                self.new_files[0]],stdout=subprocess.PIPE)
-        out, err = subprocess_output.communicate()
-        out = str(out.decode(encoding))
-        print('8. [Executed RETRIEVE AS Server 4 output:', out, ']')
-        
-        
-        
-        
-        
-        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=3', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'SEARCH',
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('9. [Executed SEARCH AS Server 3 output:', out, ']') 
-        assert 'SEARCH :localhost:2345' in out
+        print('8. [Executed RETRIEVE AS Server 3 output:', out, ']')
+        
+        
+        
+        
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'DEREGISTER',
+                                                             'RMISuperPeerClient.jar'), 'SEARCH',
+                                                self.new_files[0]],stdout=subprocess.PIPE)
+        out, err = subprocess_output.communicate()
+        out = str(out.decode(encoding))
+        print('9. [Executed SEARCH AS Server 2 output:', out, ']') 
+        assert 'SEARCH :localhost:2345' in out
+        
+        subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
+                                               '-DserverChoice=1', 
+                                               os.path.join(os.path.dirname(__file__),
+                                                             'RMISuperPeerClient.jar'), 'DEREGISTER',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
@@ -143,26 +143,31 @@ class TestPeerToPeerMethods(unittest.TestCase):
         
         
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
+                                               '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'DEREGISTER',
+                                                             'RMISuperPeerClient.jar'), 'DEREGISTER',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('10. [EXECUTED REGISTRY AS Server 2 output:', out, ']')
+        print('10. [EXECUTED DEREGISTRY AS Server 2 output:', out, ']')
         assert 'ACCEPT' in out
         
         encoding = 'utf-8'
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
-                                               '-DserverChoice=4', 
+                                               '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
-                                                             'RMIClient.jar'), 'RETRIEVE',
+                                                             'RMISuperPeerClient.jar'), 'RETRIEVE',
                                                 self.new_files[0]],stdout=subprocess.PIPE)
         out, err = subprocess_output.communicate()
         out = str(out.decode(encoding))
-        print('11. [Executed RETRIEVE AS Server 4 output:', out, ']')
+        print('11. [Executed RETRIEVE AS Server 2 output:', out, ']')
         assert 'RETRIEVE :No such file on any peer' in out
         
-        
-if __name__ == "__main__":
-    unittest.main()
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTest(TestPeerToPeerMethods('test_a_new_file_gets_added'))
+    return suite
+
+if __name__ == '__main__':
+    runner = unittest.TextTestRunner()
+    runner.run(suite())

@@ -3,6 +3,7 @@ package project3.pa2;
 import java.util.Hashtable;
 
 import project3.pa1.RMIClient;
+import project3.pa1.RMIClient.RMIMetadata;
 
 public class RMISuperPeerClient extends RMIClient {
   private Hashtable<Message, RMIMetadata> seen;
