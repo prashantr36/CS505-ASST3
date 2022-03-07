@@ -35,7 +35,11 @@ public class RMISuperPeerClient extends RMIClient {
     return seen.get(msg);
   }
   public static void main(String args[]) {
-	  RMIClient.main(args);
+	  String clientId = System.getProperty("clientId");
+	  String mod_clientId = "" + (Integer.parseInt(clientId) + 1);
+	  String serverChoice = System.getProperty("serverChoice");
+	  System.out.println("GNUTELLA CLUSTER " + " " + System.getProperty("clientId") + " RMIServerChoice" + serverChoice);
+	  RMIClient.main(args, mod_clientId, serverChoice);
   }
   public static void forward(Object message, String clientId, String key, String command, RMIMetadata rmi_metadata) {
 	  forwarder(rmi_metadata, key, "", -1, clientId, command, message);

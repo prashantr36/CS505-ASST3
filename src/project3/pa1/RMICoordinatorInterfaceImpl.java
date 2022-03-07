@@ -121,7 +121,7 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 			if(index_of_my_server_index +1 < list.size()) {
 				coordinator_connections.add(hostPorts[list.get(index_of_my_server_index +1)]);
 			}
-		}
+		}	
 	}
 	
 	/*
@@ -157,7 +157,6 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 							return hash.get(key).iterator().next();
 						}
 					}
-					log.info("COORDINATOR HASH found" + hash);
 					return "ACCEPT";
 			}
 			else{
@@ -168,7 +167,6 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 				else
 					return "REJECT";
 			}
-			log.info("COORDINATOR HASH " + hash);
 			return "ACCEPT";
 	}
 	@Override

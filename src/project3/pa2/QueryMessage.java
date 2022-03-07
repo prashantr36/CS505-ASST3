@@ -12,7 +12,7 @@ public class QueryMessage extends Message {
   }
 	@Override
 	public String toString() {
-		return "QueryMessage [key=" + key + ", messageId=" + Arrays.toString(messageId) + ", messageType=" + messageType
+		return "QueryMessage [key=" + key
 				+ " TTL " + ttl + "]";
 	}
 }

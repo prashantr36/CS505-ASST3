@@ -52,7 +52,7 @@ public abstract class RMIServer {
 		LocateRegistry.createRegistry(portNumber);
 		//bind the method to this name so the client can search for it
 		String bindMe = "rmi://" + hostname + ":" + portNumber +  "/Calls";
-		Naming.bind(bindMe, rmiMethods);
+		Naming.rebind(bindMe, rmiMethods);
 		System.out.println("RMIServer started successfully");
 	}
 	public static void initialize(String args[]) throws InterruptedException

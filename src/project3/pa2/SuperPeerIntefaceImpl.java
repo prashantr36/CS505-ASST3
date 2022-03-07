@@ -19,11 +19,11 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
 	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException {
 	
 		QueryMessage query = (QueryMessage) message;
-		System.out.println("Received Query message from " + clientId + " " + message
+		log.info("[SUPERPEER-QUERY]  Received Query message from " + clientId + " " + message
 				+ " at " + hostname + " port " + port);
 		
         if (rmi_super_peer_client.haveSeen(query)) {
-        	System.out.println("Has been seen! Query message from " + clientId + " " + message
+        	log.info("Has been seen! Query message from " + clientId + " " + message
     				+ " at " + hostname + " port " + port);
           return "THIS MESSAGE HAS BEEN SEEN";
         } else {
@@ -43,9 +43,6 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
         			  											coordinator_connects[1]);
         	  rm_metadata_copy.dst_hostname = coordinator_connects[0];
         	  rm_metadata_copy.dst_port = coordinator_connects[1];
-        	  System.out.println("SUPER PEER MAKING QUERY_MESSAGE OUT " + " with message " + message + " rmi_metadata "
-						+ rm_metadata_copy + " hostname " + hostname + " port " + port + " After receiving from "
-        	  				+ clientId);
         	  RMISuperPeerClient.forward(message, hostname + ":" + port, query.key, "QUERY_MESSAGE", rm_metadata_copy);
           }
         } catch (MessageExpiredException e) {
@@ -70,6 +67,8 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl{
 	public String QUERY_HIT_MESSAGE(String clientId, String key, Object message) throws RemoteException {
 		QueryHitMessage query_hit_message = (QueryHitMessage) message;
 		RMIMetadata conn = rmi_super_peer_client.getDestination(query_hit_message);
+		log.info("[SUPERPEER-QHM] Received QUERY_HIT_MESSAGE message from " + clientId + " " + query_hit_message
+				+ " at " + hostname + " port " + port);
 		if (conn == null) {
           return "Invalid connection";
         }

@@ -15,6 +15,8 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 	
 	@Override
 	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException {
+		log.info("[LEAFNODE-QUERY] from " + clientId + " " + message
+				+ " at " + local_hostname + " port " + local_port);
 		QueryMessage query = (QueryMessage)(message);
         if(clientId.split(":")[0].isEmpty() || clientId.split(":")[1].isEmpty()) {
 			return "Error in parsing clientId" + clientId;
@@ -38,6 +40,8 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 	
 	@Override
 	public String QUERY_HIT_MESSAGE(String clientId, String key, Object message) throws RemoteException{
+		log.info("[LEAFNODE-QHM] from " + clientId + " " + message
+				+ " at " + local_hostname + " port " + local_port);
 		QueryHitMessage query_hit_message = (QueryHitMessage) message;
 		if(query_hit_message.matches.length >0) {
 			String dst_host = query_hit_message.matches[0].split(":")[0];
@@ -50,8 +54,7 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 	}
 	
 	public void obtain(String filename, RMIMetadata rmi_metadata) {
-		log.info(" RUNNIGN OBTAIN " + filename + " on RMIMetadata " + rmi_metadata
-							+ " local_hostname " + local_hostname + " local_port " + local_port);
+		log.info(" RUNNIGN OBTAIN " + filename + " on RMIMetadata " + rmi_metadata);
 		RMISuperPeerClient.forward(null, local_hostname + ":" + local_port,  filename, "OBTAIN", rmi_metadata);
 	}
 }

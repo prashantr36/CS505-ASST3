@@ -95,7 +95,8 @@ public abstract class RMIClient {
 		leaf_node_indices = new HashMap<Integer, List<Integer>>();
 
 		try {
-			BufferedReader fileReader = new BufferedReader(new FileReader("../../configuration/configs.txt"));
+			FileReader fReader = new FileReader("../../configuration/configs.txt");
+			BufferedReader fileReader = new BufferedReader(fReader);
 			int c = 0;
 			int super_peer_index = 0;
 			int leaf_node_index = 0;
@@ -149,11 +150,10 @@ public abstract class RMIClient {
 		return hostPorts;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[], String clientIdStr, String serverNumStr) {
 		configureLogger();
 		String clientId = "NA";
 		// 4 arguments must be passed in.
-		String hostPorts[][] = new String[maxNumReplicas][hostPortColumn];
 		String command = "";
 		String key = "";
 		String values = "";
@@ -162,28 +162,23 @@ public abstract class RMIClient {
 			log.fatal("Fatal error : instruction key value");
 			System.exit(-1);
 		} else {
-			hostPorts = readConfigFile();
+			readConfigFile();
 			command = args[0];
 			key = args[1];
 			for (int a = 2; a < args.length; a++)
 				values += " " + args[a];
-			clientId = System.getProperty("clientId");
-			serverNum = Integer.parseInt(System.getProperty("serverChoice"));
+			clientId = clientIdStr;
+			serverNum = Integer.parseInt(serverNumStr);
 		}
-
 		int client_id = Integer.parseInt(clientId);
-
-		// System.out.println(" super_peer_indices " + super_peer_indices);
-		// System.out.println(" leaves " + leaf_node_indices);
-
 		String coordinator_hostname = hostPorts[super_peer_indices.get(client_id-1)][0];
 		String coordinator_port = hostPorts[super_peer_indices.get(client_id-1)][1];
 
-		String hostname = hostPorts[leaf_node_indices.get(client_id-1).get(serverNum - 1)][0];
-		String port = hostPorts[leaf_node_indices.get(client_id-1).get(serverNum - 1)][1];
-
+		String hostname = RMIClient.hostPorts[leaf_node_indices.get(client_id-1).get(serverNum - 1)][0];
+		String port = RMIClient.hostPorts[leaf_node_indices.get(client_id-1).get(serverNum - 1)][1];
+		
 		forwarder(new RMIMetadata( coordinator_hostname, coordinator_port, hostname, port), key, values, serverNum,
-				clientId, command, null);
+			clientId, command, null);
 	}
 
 	public static void forwarder(RMIMetadata rmiMetadata, String key, String values, int serverNum, String clientId,
@@ -204,8 +199,6 @@ public abstract class RMIClient {
 					break;
 				}
 			}
-			System.out.println(command + " DESTINATION SERVERE INDEX " + dest_server_index
-								+ rmiMetadata + " message " + message);
 			// Is the destination a coordinator or is a peer
 			RMIServerInterface hostImpl = null;
 			CentralIndexingServerInterface coordinatorHostImpl = null;
@@ -224,55 +217,57 @@ public abstract class RMIClient {
 			
 			switch (command.trim().toUpperCase()) {
 			case "GET":
+				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 				log.info(
-						"Client on Server #" + serverNum + " RUNNING GET :" + hostImpl.GET(hostname + ":" + port, key));
+						"Client on Server #" + serverNum + " RUNNING GET :" + hostImpl.GET(coordinator_hostname + ":" + coordinator_port, key));
 				break;
 			case "RETRIEVE":
+				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING RETRIEVE :"
-						+ hostImpl.GET(hostname + ":" + port, key));
+						+ hostImpl.GET(coordinator_hostname + ":" + coordinator_port, key));
 				break;
 			case "OBTAIN":
 					hostImpl.OBTAIN(hostname + ":" + port, key);
 				break;
 			case "SEARCH":
+				coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING SEARCH :" + coordinatorHostImpl.SEARCH(key));
 				break;
 			case "REGISTRY":
-				Path path = Paths.get("../../Gnutella-" + (clientId) + "/RMIServer" + (serverNum) + "/files/" + key);
+				coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
+				Path path = Paths.get("../../Gnutella-" + (Integer.parseInt(clientId)-1) + "/RMIServer" + (serverNum) + "/files/" + key);
 				if (Files.exists(path)) {
 					log.info("Client on Server #" + serverNum + " RUNNING REGISTRY :"
 							+ coordinatorHostImpl.REGISTRY(hostname + ":" + port, key));
 				} else {
 					log.error("Error: Client on Server #" + serverNum + " RUNNING REGISTRY cause:"
-							+ " no such file on server");
+							+ " no such file on server" + path.toAbsolutePath().toString());
 				}
 
 				break;
 			case "DEREGISTER":
+				coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING DEREGISTER :"
 						+ coordinatorHostImpl.DEREGISTER(hostname + ":" + port, key));
 				break;
 			case "PUT":
-
+				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING GET "
 						+ hostImpl.PUT(hostname + ":" + port, key, values));
 				break;
 			case "DELETE":
+				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING GET "
 						+ hostImpl.DELETE(hostname + ":" + port, key));
 				break;
 			case "QUERY_MESSAGE":
 				if (message instanceof Serializable) {
 					if (is_destination_coordinator)
-						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE "
-								+ " as Super Peer the Message " + message + 
-								coordinatorHostImpl.QUERY_MESSAGE(hostname + ":" + port, message));
+						coordinatorHostImpl.QUERY_MESSAGE(hostname + ":" + port, message);
 				} else {
 					if (!is_destination_coordinator) {
 						QueryMessage q_message = new QueryMessage(key);
-						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE "
-								+ " as Leaf Node the Message " + q_message + 
-								hostImpl.QUERY_MESSAGE(hostname + ":" + port, q_message));
+						hostImpl.QUERY_MESSAGE(hostname + ":" + port, q_message);
 					} else {
 						log.error("Error Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE: "
 								+ " garbled message.");
@@ -282,13 +277,9 @@ public abstract class RMIClient {
 			case "QUERY_HIT_MESSAGE":
 				if (message instanceof Serializable)
 					if (is_destination_coordinator)
-						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY_HIT MESSAGE "
-								+ message + " result " +
-								coordinatorHostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
+						coordinatorHostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message);
 					else {
-						log.info("Client on Server #" + rmiMetadata + " RUNNING QUERY_HIT MESSAGE "
-								+ message + " result " +
-								hostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message));
+						hostImpl.QUERY_HIT_MESSAGE(hostname + ":" + port, key, message);
 					}
 				else {
 					log.error(
@@ -303,7 +294,8 @@ public abstract class RMIClient {
 				break;
 			}
 		} catch (Exception e) {
-			log.error("Error occured while connecting to RMI server with error, " + e.getMessage());
+			log.error("Error occured while connecting to RMI server with error, ");
+			e.printStackTrace();
 		}
 	}
 

@@ -61,16 +61,4 @@ localhost 2372
 localhost 3472
 localhost 4568
 localhost 5361
-Gnutella11
-localhost 1264
-localhost 2375
-localhost 3475
-localhost 4571
-localhost 5364
-Gnutella12
-localhost 1267
-localhost 2378
-localhost 3478
-localhost 4574
-localhost 5367
-#Topology = all_to_all
+#Topology = linear

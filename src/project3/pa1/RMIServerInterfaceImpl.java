@@ -271,7 +271,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-	            	 return "File " + key + " Downloaded at " + clientId;
+	            	 return "File " + key + " Downloaded at " + local_hostname + ":" + local_port;
 	            }).exceptionally(ex -> {
 	            	try {
 						hostImpl.ASK("DELETE", clientId, key, "");
@@ -283,7 +283,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		        }).thenApplyAsync(input -> input)
 			       .thenAccept(log::info);
 						
-				response = "File " + key + " Downloaded at " + clientId;}
+				response = "File " + key + " Downloaded at " + local_hostname + ":" + local_port;}
 				catch(Exception e) {
 					e.printStackTrace();
 					response = "No key "+ key + " matches db ";

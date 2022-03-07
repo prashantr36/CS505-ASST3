@@ -1,4 +1,4 @@
-echo "Setting up 5 Replicas..."
+echo "Setting up 10 Gnutella..."
 FILE=configuration/configs.txt
 Server_Name=0
 Gnutella_Name=0
@@ -37,5 +37,3 @@ done
 find ../ -type f -name "*.txt" -exec touch {} +
 # Unit Test
 (cd "Instrument/RMIClient" && sh runJavaRMIClient.sh);
-# Integration test
-#cd "Instrument/RMIClient" && python3 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py

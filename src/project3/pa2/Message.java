@@ -8,22 +8,20 @@ import java.util.Objects;
 import java.util.Random;
 
 public abstract class Message implements Serializable {
-  /**
-	 * 
-	 */
   private static final long serialVersionUID = 1L;
-  private static Random random = new Random();
-  public static final byte DEFAULT_TTL = 7;
   private static final int ID_LENGTH = 16;
   protected byte[] messageId;
   protected byte messageType;
   public byte ttl;
+  private static Random random = new Random();
+  public static final byte DEFAULT_TTL = 10;
+  
   protected Message(byte messageType) {
     try {
       this.messageId = new byte[ID_LENGTH]; 
       random = new Random();
       random.nextBytes(messageId);
-      this.messageId = MessageDigest.getInstance("SHA-256").digest(messageId);
+      this.messageId = MessageDigest.getInstance("MD5").digest(messageId);
     } catch (NoSuchAlgorithmException e) {
     }
     this.messageType = messageType;
