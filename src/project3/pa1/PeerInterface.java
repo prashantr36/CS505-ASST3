@@ -10,5 +10,5 @@ import java.rmi.RemoteException;
  * Server interface- clients can call the following methods
  */
 public interface PeerInterface extends Remote{
-	public String RETRIEVE(String filename)throws RemoteException;
+	public String RETRIEVE(String filename) throws RemoteException;
 }

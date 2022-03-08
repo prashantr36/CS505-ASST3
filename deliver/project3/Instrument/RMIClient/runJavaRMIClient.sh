@@ -5,6 +5,6 @@ echo "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["
 echo "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
 
 echo "*******************  1.GET test.txt ***********************"
-java  -jar -DclientId=1 -DserverChoice=1 RMISuperPeerClient.jar QUERY_MESSAGE unit_test_file.txt
+java  -jar -DclientId=1 -DserverChoice=1 RMISuperPeerClient.jar QUERY_MESSAGE unit_test.txt
 
 echo "//////// end of SIMULATION /////////////////////"
