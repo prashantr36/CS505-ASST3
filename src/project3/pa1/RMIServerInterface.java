@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 public interface RMIServerInterface extends Remote{
 	public String PUT(String clientId, String key,String value) throws RemoteException;
 	public String GET(String clientId,String key)throws RemoteException;
+	public String EDIT(String clientId,String key)throws RemoteException;
 	public String DELETE(String clientId, String key)throws RemoteException;
 	public String DELETE_X(String clientId, String key)throws RemoteException;
 	public String ASK(String command, String clientId, String key, String value) throws RemoteException;

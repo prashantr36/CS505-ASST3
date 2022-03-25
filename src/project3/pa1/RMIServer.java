@@ -17,9 +17,9 @@ import org.apache.log4j.PatternLayout;
 
 public abstract class RMIServer {
 	private static ServerSocket serverSocket;
-    static Semaphore semaphore;
 	protected final static Logger log = Logger.getLogger(RMIServer.class);
 	final static String PATTERN = "%d [%p|%c|%C{1}] %m%n";
+	public RMIServerInterfaceImpl rmi;
 	static void configureLogger()
 	{
 		ConsoleAppender console = new ConsoleAppender(); //create appender
@@ -48,6 +48,7 @@ public abstract class RMIServer {
 	public RMIServer(String hostname, Integer portNumber, RMIServerInterface rmiMethods) throws Exception
 	{	
 		RMIServerInterfaceImpl rmi = (RMIServerInterfaceImpl) rmiMethods;
+		this.rmi = rmi;
 		rmi.startBackGroundFolderThread();
 		LocateRegistry.createRegistry(portNumber);
 		//bind the method to this name so the client can search for it
@@ -55,7 +56,7 @@ public abstract class RMIServer {
 		Naming.rebind(bindMe, rmiMethods);
 		System.out.println("RMIServer started successfully");
 	}
-	public static void initialize(String args[]) throws InterruptedException
+	public void initialize(String args[], RMIServerInterfaceImpl rmi) throws InterruptedException
 	{
 		configureLogger();
 		Integer portNumber =0;
@@ -74,16 +75,13 @@ public abstract class RMIServer {
             e.printStackTrace();
             return;
         }
-        // initialize the semaphore
-        semaphore = new Semaphore(1);
-
         // server listens on its main socket and accepts client connections
         List<Thread> tlist = new ArrayList<>();
         while(true) {
             try {
                 // accept client connections
                 Socket socket = serverSocket.accept();
-                Thread t = new Thread(new ServerThread(socket));
+                Thread t = new Thread(new ServerThread(socket, rmi));
                 tlist.add(t);
                 t.start();
 

@@ -33,6 +33,10 @@ import project3.io.RMIInputStream;
 import project3.io.RMIInputStreamImpl;
 import project3.io.RMIOutputStream;
 import project3.io.RMIOutputStreamImpl;
+import project3.pa3.FileRepository;
+import project3.pa3.FileRepository.FileDuplicationException;
+import project3.pa3.FileRepository.FileRepositoryFile;
+
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
@@ -48,14 +52,16 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	public String coordinator_hostname;
 	private static final String ACCEPT = "ACCEPT";
 	protected static final String ACK = "ACK";
-	private static final String NACK = "NACK";
+	protected static final String NACK = "NACK";
 	private static final int numCoordinators = 1;
 	final public static int BUF_SIZE = 1024 * 64;
 	public Runnable updateFolder;
 	protected List<String[]> coordinator_connections;
-	protected RMIServerInterfaceImpl(int portNumber) throws Exception {
+	public FileRepository frep;
+	protected RMIServerInterfaceImpl(int portNumber, FileRepository fRep) throws Exception {
 		super();
 		initializeServer();
+		this.frep = fRep;
 		local_port = "" + portNumber;
 		local_hostname = "localhost";
 		this.coordinator_hostname ="";
@@ -105,8 +111,12 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	
 	protected void startBackGroundFolderThread() throws IOException {
 		Files.createDirectories(Paths.get("files"));
+		Files.createDirectories(Paths.get("downloads"));
+		Files.createDirectories(Paths.get("file_metadata"));
 		new Thread(this.updateFolder).start();
 		Files.createDirectories(Paths.get("files"));
+		Files.createDirectories(Paths.get("downloads"));
+		Files.createDirectories(Paths.get("file_metadata"));
 	}
 	
 	/*
@@ -185,8 +195,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		return false;
 	}
 
-	public  String GET(String clientId, final String key)
-	{
+	public  String GET(String clientId, final String key) {
 		log.info("Server at " + local_hostname + ":" + local_port + " "+ "received [GET " + key + "] from client " + clientId);
 		String response = "";
 		try {
@@ -209,34 +218,39 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			}
 			
 
-				CompletableFuture
-		            .supplyAsync(() -> {
-		            	 try {
-			            	 Downloader downloader = new Downloader(peer_to_contact.split(":")[0], Integer.parseInt(peer_to_contact.split(":")[1]) + 1, key);
-					         downloader.start();
-					         
-		            	 } catch(Exception e) {
-		            		 throw new RuntimeException("socket closed unexpectedly or file not found.");   
-		            	 }
-		            	 try {
-							hostImpl.ASK("PUT", clientId, key, "");
-						} catch (RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-		            	 return "File " + key + " Downloaded at " + clientId;
-		            }).exceptionally(ex -> {
-		            	try {
-							hostImpl.ASK("DELETE", clientId, key, "");
-						} catch (RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			            return "ERR: File cannot be downloaded exception"  + ex;
-			        }).thenApplyAsync(input -> input)
-				       .thenAccept(log::info);
+			CompletableFuture
+	            .supplyAsync(() -> {
+	            	 try {
+		            	 Downloader downloader = new Downloader(peer_to_contact.split(":")[0], Integer.parseInt(peer_to_contact.split(":")[1]) + 1, key);
+				         downloader.start();
+				         
+	            	 } catch(Exception e) {
+	            		 throw new RuntimeException("socket closed unexpectedly or file not found.");   
+	            	 }
+	            	 try {
+						hostImpl.ASK("PUT", clientId, key, "");
+						frep.add(new FileRepositoryFile(key));
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (FileDuplicationException e) {
+						log.error("File Duplication Error " + e);
+					}
+	            	 return "FileRepositoryFile " + key + " Downloaded at " + clientId;
+	            }).exceptionally(ex -> {
+	            	try {
+						hostImpl.ASK("DELETE", clientId, key, "");
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            return "ERR: FileRepositoryFile cannot be downloaded exception"  + ex;
+		        }).thenApplyAsync(input -> input)
+			       .thenAccept(log::info);
 							
-			response = "File " + key + " Downloaded at " + clientId;
+			response = "FileRepositoryFile " + key + " Downloaded at " + clientId;
 		} catch(Exception e) {
 			e.printStackTrace();
 			response = "No key "+ key + " matches db ";
@@ -271,7 +285,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-	            	 return "File " + key + " Downloaded at " + local_hostname + ":" + local_port;
+	            	 return "FileRepositoryFile " + key + " Downloaded at " + local_hostname + ":" + local_port;
 	            }).exceptionally(ex -> {
 	            	try {
 						hostImpl.ASK("DELETE", clientId, key, "");
@@ -279,11 +293,11 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		            return "ERR: File cannot be downloaded exception"  + ex;
+		            return "ERR: FileRepositoryFile cannot be downloaded exception"  + ex;
 		        }).thenApplyAsync(input -> input)
 			       .thenAccept(log::info);
 						
-				response = "File " + key + " Downloaded at " + local_hostname + ":" + local_port;}
+				response = "FileRepositoryFile " + key + " Downloaded at " + local_hostname + ":" + local_port;}
 				catch(Exception e) {
 					e.printStackTrace();
 					response = "No key "+ key + " matches db ";

@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import project3.pa3.FileRepository;
+
 public class Downloader {
 
     private static final int KEY_SIZE = 120;
@@ -15,13 +17,14 @@ public class Downloader {
     private int port;
     private byte[] key;
     private String fileName;
+    private String out_fileName;
     private int size = 1094 *50;
 
     public Downloader(String host, int port, String filename) {
         this.host = host;
         this.port = port;
         this.fileName = filename;
-        this.fileName = "files/" + this.fileName;
+        this.out_fileName = "downloads/" + this.fileName;
         this.size = 1094 *50;
         this.key = new byte[KEY_SIZE];
         System.arraycopy(this.fileName.getBytes(), 0, this.key, 0, Math.min(KEY_SIZE, this.fileName.getBytes().length));
@@ -41,10 +44,10 @@ public class Downloader {
         OutputStream out = socket.getOutputStream();
         out.write(key);
         
-        FileOutputStream fout = new FileOutputStream(fileName);
+        FileOutputStream fout = new FileOutputStream(this.out_fileName);
         // download file
         InputStream in = socket.getInputStream();
-        System.out.println("ready to download " + fileName);
+        System.out.println("ready to download " + this.out_fileName);
         try {
             int len = in.read(buffer);
             if (len < 0) {

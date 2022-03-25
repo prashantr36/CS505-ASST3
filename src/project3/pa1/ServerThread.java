@@ -7,6 +7,9 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Map;
 
+import project3.pa3.FileRepository;
+import project3.pa3.FileRepository.FileUnFoundException;
+
 public class ServerThread implements Runnable {
 
     private static final int KEY_SIZE = 120;
@@ -18,10 +21,12 @@ public class ServerThread implements Runnable {
     private String key;
     private InputStream in;
     private String filename;
+    private RMIServerInterfaceImpl rmi;
 
-    public ServerThread(Socket socket) {
+    public ServerThread(Socket socket, RMIServerInterfaceImpl rmi) {
         this.socket = socket;
         commandKey = new byte[KEY_SIZE];
+        this.rmi = rmi;
     }
 
     @Override
@@ -37,9 +42,17 @@ public class ServerThread implements Runnable {
         key = new String(Arrays.copyOfRange(commandKey, 0, commandKey.length));
         key = key.trim();
         this.filename = key;
-        System.out.println(" This filename " + this.filename);
         try {
+        	if(this.rmi.frep.get(key).isMasterClient()) {
+				this.filename = "files/" + this.filename;
+			} else {
+				this.filename = "downloads/" + this.filename;
+			}
+			System.out.println(" This filename " + this.filename);
 			forwardData();
+		} catch (FileUnFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,12 +12,9 @@ from base64 import decode
 
 class TestPeerToPeerMethods(unittest.TestCase):
     
-    def get_parent_dir(directory):
-            import os
-            return os.path.dirname(directory)
-    
     def setUp(self):
         self.new_files = []
+        self.new_files_dir_appended = []
         length = 10000
         letters = string.ascii_lowercase
         print('setup')
@@ -31,6 +28,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
                 filename = str(uuid.uuid4()) + ".txt"
                 print(filename)
                 self.new_files.append(filename)
+                self.new_files_dir_appended.append(os.path.join(d, filename))
                 size = random.randint(1, 100)
                 with open(os.path.join(d, filename), "w") as f:
                     f.write(''.join(random.choice(letters) for i in range(length)))
@@ -38,6 +36,9 @@ class TestPeerToPeerMethods(unittest.TestCase):
     
     
     def test_a_new_file_gets_added_single_gnutella_from_pa1(self):
+        def get_parent_dir(directory):
+            import os
+            return os.path.dirname(directory)
         encoding = 'utf-8'
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=4', 
@@ -125,9 +126,6 @@ class TestPeerToPeerMethods(unittest.TestCase):
         print('9. [Executed RETRIEVE AS Server 3 output:', out, ']')
         
         
-        
-        
-        
         subprocess_output = subprocess.Popen(['java', '-jar', '-DclientId=1',
                                                '-DserverChoice=2', 
                                                os.path.join(os.path.dirname(__file__),
@@ -210,7 +208,7 @@ class TestPeerToPeerMethods(unittest.TestCase):
             file_a_location = os.path.join(d, self.new_files[0])
         
         file_b_location = None
-        for dirs in os.walk((get_parent_dir(get_parent_dir(os.getcwd()))) + "/Gnutella-2/RMIServer4/files"):
+        for dirs in os.walk((get_parent_dir(get_parent_dir(os.getcwd()))) + "/Gnutella-2/RMIServer4/downloads"):
             d = dirs[0]
             file_b_location = os.path.join(d, self.new_files[0])
         
@@ -230,7 +228,13 @@ class TestPeerToPeerMethods(unittest.TestCase):
         
         assert os.path.exists(file_a_location)
         assert os.path.exists(file_b_location)
+        self.new_files.append(file_a_location)
+        self.new_files.append(file_b_location)
         assert filecmp.cmp(file_a_location, file_b_location)
+        
+    def tearDown(self):
+        for f in self.new_files_dir_appended:
+            os.remove(f)
 
 def suite():
     suite = unittest.TestSuite()

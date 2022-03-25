@@ -1,16 +1,18 @@
-package project3.pa2;
+package project3.pa3;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 
 import project3.pa1.RMIClient.RMIMetadata;
-import project3.pa1.RMICoordinatorInterfaceImpl;
 import project3.pa1.RMIServerInterfaceImpl;
+import project3.pa3.FileRepository.FileUnFoundException;
 
-public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
+public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implements LeafNodeServerInterface{
 	private static final long serialVersionUID = 1L;
+	private static FileRepository file_repository;
 	protected LeafNodeServerInterfaceImpl(int portNumber) throws Exception {
-		super(portNumber);
+		super(portNumber, (file_repository = new FileRepository()));
 	}
 	
 	@Override
@@ -57,4 +59,34 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl{
 		log.info(" RUNNIGN OBTAIN " + filename + " on RMIMetadata " + rmi_metadata);
 		RMISuperPeerClient.forward(null, local_hostname + ":" + local_port,  filename, "OBTAIN", rmi_metadata);
 	}
+
+	@SuppressWarnings("static-access")
+	@Override
+	public String INVALIDATION(String message_id, String clientID, String filename, int versionNumber)
+			throws RemoteException {
+		try {
+			file_repository.isStaleThenInvalidate(filename, versionNumber);
+		} catch (FileUnFoundException e) {
+			InvalidateMessage i_msg = new InvalidateMessage(filename, versionNumber);
+			log.error("[FileRepository| Error]  request from " + clientID + " i_msg" + i_msg + " No such file in cache.");
+		} catch (IOException e) {
+			InvalidateMessage i_msg = new InvalidateMessage(filename, versionNumber);
+			log.error("[FileRepository| Error]  IOException request from " + clientID + " i_msg" + i_msg + " No such file in cache.");
+		}
+		return ACK;
+	}
+
+	@Override
+	public String EDIT(String clientId, String key) throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			file_repository.update(new FileRepository.FileRepositoryFile(key));
+			return ACK;
+		} catch(Exception e) {
+			log.error(e.getStackTrace());
+			return NACK;
+		}
+	}
+	
+	
 }

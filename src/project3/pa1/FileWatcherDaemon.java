@@ -12,6 +12,11 @@ import java.nio.file.WatchService;
 import java.util.HashSet;
 import java.util.Set;
 
+import project3.pa3.FileRepository.FileRepositoryFile;
+import project3.pa3.FileRepository.FileDuplicationException;
+import project3.pa3.FileRepository.FileUnFoundException;
+import project3.pa3.FileRepository.VersionMismatchException;
+
 public class FileWatcherDaemon implements Runnable {
 	
 	private RMIServerInterfaceImpl rsimpl;
@@ -93,11 +98,47 @@ public class FileWatcherDaemon implements Runnable {
 					
 		            for(String fileNameCreate: fileNamesCreated) {
 		            	this.rsimpl.PUT(this.rsimpl.local_hostname  + ":" + this.rsimpl.local_port, fileNameCreate, "");
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameCreate);
+		            	fileRepositoryFile.setIsMasterClient(true);
+		            	try {
+		            		System.out.println("CREATED" + fileRepositoryFile);
+		            		this.rsimpl.frep.add(fileRepositoryFile);
+		            		
+		            	} catch (Exception e){
+		            		
+		            	}
 		            }
 		            
 		            for(String fileNameDelete: fileNamesDeleted) {
 		            	this.rsimpl.DELETE(this.rsimpl.local_hostname  + ":" + this.rsimpl.local_port, fileNameDelete);
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameDelete);
+		            	try {
+							this.rsimpl.frep.remove(fileNameDelete);
+						} catch (FileUnFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		            
 		            }
+		            
+		            for(String fileNameModified: fileNamesModified) {
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameModified);
+		            	fileRepositoryFile.setIsMasterClient(true);
+		            	if(!fileRepositoryFile.isMasterClient()) {
+		            		System.err.format("Cannot modify file '%s'" +
+			                        " is not a plain text file of master client .%n", fileNameModified);
+		            	} else {
+			            	this.rsimpl.PUT(this.rsimpl.local_hostname  + ":" + this.rsimpl.local_port, fileNameModified, "");
+			            	try {
+			            		System.out.println("UPDATED " + fileRepositoryFile);
+								this.rsimpl.frep.update(fileRepositoryFile);
+							} catch (FileDuplicationException | VersionMismatchException | FileUnFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+		            	}
+		            }
+		            
 		            fileNamesModified = new HashSet<String>();
 				    fileNamesCreated = new HashSet<String>();
 				    fileNamesDeleted = new HashSet<String>();

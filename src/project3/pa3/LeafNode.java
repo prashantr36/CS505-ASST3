@@ -1,16 +1,16 @@
-package project3.pa2;
+package project3.pa3;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import project3.pa1.CentralIndexingServerInterface;
-import project3.pa1.RMICoordinator;
+import project3.pa1.RMIServer;
 
-public class SuperPeer extends RMICoordinator {
-	public SuperPeer(String hostname, Integer portNumber) throws Exception {
-		super(hostname, portNumber, (CentralIndexingServerInterface) new SuperPeerIntefaceImpl(portNumber));
-		// TODO Auto-generated constructor stub
+public class LeafNode extends RMIServer {
+	protected static RMIServer rmi_server;
+	public LeafNode(String hostname, Integer portNumber) throws Exception {
+		super(hostname, portNumber, new LeafNodeServerInterfaceImpl(portNumber));
 	}
+	
 	@SuppressWarnings("static-access")
 	public static void initalize(String args[]) throws Exception {
 		
@@ -40,12 +40,13 @@ public class SuperPeer extends RMICoordinator {
 			System.out.println(e.getMessage());
 			System.exit(-1);
 		}
-		new SuperPeer(args[0], portNumber).initialize(args);
-		
+		rmi_server = new LeafNode(args[0], portNumber);
+		rmi_server.initialize(args, rmi_server.rmi);
+		rmi_server.log.info("HELLO ");
 	}
 	
 	
 	public static void main(String args[]) throws Exception{
 		initalize(args);
-	}	
+	}
 }
