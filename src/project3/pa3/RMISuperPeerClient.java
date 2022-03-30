@@ -6,11 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import project3.pa1.RMIClient;
+import project3.pa1.RMIClient.RMIMetadata;
 
 public class RMISuperPeerClient extends RMIClient {
   private LinkedHashMap<Message, RMIMetadata> seen;
   private static String my_localhost;
   private static String my_port;
+  public static String PUSH_CONSISTENCY_METHOD = "";
   final int MAX = 1000;
   protected RMISuperPeerClient(String my_localhost, String my_port) {
 	seen = new LinkedHashMap<Message, RMIMetadata>() {
@@ -40,6 +42,8 @@ public class RMISuperPeerClient extends RMIClient {
 	  String clientId = System.getProperty("clientId");
 	  String mod_clientId = "" + (Integer.parseInt(clientId) + 1);
 	  String serverChoice = System.getProperty("serverChoice");
+	  RMISuperPeerClient.PUSH_CONSISTENCY_METHOD = System.getenv("PUSH_BASED_CONSISTENCY");
+	  System.out.println(" PUSH_BASED_CONSISTENCY " + RMISuperPeerClient.PUSH_CONSISTENCY_METHOD);
 	  System.out.println("GNUTELLA CLUSTER " + " " + System.getProperty("clientId") + " RMIServerChoice" + serverChoice);
 	  RMIClient.main(args, mod_clientId, serverChoice);
   }

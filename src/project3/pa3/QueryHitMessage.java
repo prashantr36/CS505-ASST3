@@ -2,6 +2,8 @@ package project3.pa3;
 
 import java.util.Arrays;
 
+import project3.pa3.FileRepository.FileRepositoryFile;
+
 public class QueryHitMessage extends Message {
 	protected QueryHitMessage(byte[] messageId, String[] matches, String leaf_node_hostname, String leaf_node_port) {
 		super(TYPE_ID);

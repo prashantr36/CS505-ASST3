@@ -31,6 +31,7 @@ import project3.io.RMIInputStream;
 import project3.io.RMIInputStreamImpl;
 import project3.io.RMIOutputStream;
 import project3.io.RMIOutputStreamImpl;
+import project3.pa1.RMIServerInterfaceImpl.PeerToContact;
 
 @SuppressWarnings("serial")
 public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject implements RMIServerInterface, CentralIndexingServerInterface{
@@ -46,6 +47,7 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 	private static final int numCoordinators = 1;
 	final public static int BUF_SIZE = 1024 * 64;
 	public static List<String[]> coordinator_connections;
+	public static List<String[]> all_coordinator_connections;
 	protected RMICoordinatorInterfaceImpl(int portNumber) throws RemoteException {
 		super();
 
@@ -88,6 +90,7 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 		hash = new ConcurrentHashMap<String, LinkedHashSet<String>>();
 		hostPorts= RMIClient.readConfigFile();
 		coordinator_connections = new ArrayList<String[]>();
+		all_coordinator_connections = new ArrayList<String[]>();
 		if(RMIClient.TOPOLOGY_SELECTION.compareTo(RMIClient.TOPOLOGY_TYPE.ALL_TO_ALL) == 0) {
 			
 			int my_server_index = 0;
@@ -121,7 +124,11 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 			if(index_of_my_server_index +1 < list.size()) {
 				coordinator_connections.add(hostPorts[list.get(index_of_my_server_index +1)]);
 			}
-		}	
+		}
+		for(Integer k: RMIClient.super_peer_indices.values()) {
+			all_coordinator_connections.add(hostPorts[k]);
+		}
+		
 	}
 	
 	/*
@@ -175,7 +182,7 @@ public abstract class RMICoordinatorInterfaceImpl extends UnicastRemoteObject im
 		return null;
 	}
 	@Override
-	public String GET(String clientId, String key) throws RemoteException {
+	public PeerToContact GET(String clientId, String key) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -21,8 +21,12 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
 import project3.pa3.InvalidateMessage;
+import project3.pa3.LeafNodeServerInterface;
 import project3.pa3.LeafNodeServerInterfaceImpl;
 import project3.pa3.QueryMessage;
+import project3.pa3.SuperPeerServerInterface;
+import project3.pa3.FileRepository;
+import project3.pa3.FileRepository.FileRepositoryFile;
 
 public abstract class RMIClient {
 	final static Logger log = Logger.getLogger(RMIClient.class);
@@ -225,11 +229,46 @@ public abstract class RMIClient {
 			values = values.trim();
 			
 			switch (command.trim().toUpperCase()) {
-			
+			case "DELETE":
+				Path path_exists_check = Paths.get("../../Gnutella-" + (Integer.parseInt(clientId)-1) + "/RMIServer" + (serverNum) + "/files/" + key);
+				if (Files.exists(path_exists_check)) {
+					Files.deleteIfExists(path_exists_check);
+					coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
+					log.info("Client on Server #" + serverNum + " RUNNING DEREGISTER :"
+							+ coordinatorHostImpl.DEREGISTER(hostname + ":" + port, key));
+					log.info("Client on Server #" + serverNum + " RUNNING DELETE "
+							+ hostImpl.DELETE(hostname + ":" + port, key));
+					((SuperPeerServerInterface) coordinatorHostImpl).INVALIDATION("" + InvalidateMessage.TYPE_ID, hostname + ":" + port, key, -1);
+				}
+				break;
 			case "EDIT":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				log.info(
-						"Client on Server #" + serverNum + " RUNNING EDIT :" + hostImpl.EDIT(coordinator_hostname + ":" + coordinator_port, key));
+				Path path_exists = Paths.get("../../Gnutella-" + (Integer.parseInt(clientId)-1) + "/RMIServer" + (serverNum) + "/files/" + key);
+				if (Files.exists(path_exists)) {
+					
+					log.info(
+							
+							"Client on Server #" + serverNum + " RUNNING EDIT :" + hostImpl.EDIT(coordinator_hostname + ":" + coordinator_port, key));
+					
+					
+					coordinatorHostImpl = (CentralIndexingServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
+					((SuperPeerServerInterface) coordinatorHostImpl).INVALIDATION("" + InvalidateMessage.TYPE_ID, hostname + ":" + port, key, FileRepository.FORCE_FILE_STALE_VERSION_NUMBER);
+				}
+				break;
+			case "INVALIDATE_MESSAGE":
+				if (message instanceof Serializable && is_destination_coordinator) {
+					InvalidateMessage i_message = (InvalidateMessage) message;
+					for(Integer leaf_hostport_key: leaf_node_indices.get(dest_super_peer_index_key)) {
+						i_message = (InvalidateMessage) message;
+						hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + 
+						(hostPorts[leaf_hostport_key][0]) + ":" + (hostPorts[leaf_hostport_key][1]) + "/Calls");
+						((LeafNodeServerInterface) hostImpl).INVALIDATION("" + i_message.TYPE_ID,
+								hostname + ":" + port, i_message.getKey(),
+								i_message.getVersionNumber());
+						}
+				} else {
+						log.error("Error Client on Server #" + rmiMetadata + " RUNNING INVALIDATE MESSAGE: "
+								+ " garbled message.");
+				}
 				break;
 			case "GET":
 				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
@@ -239,7 +278,7 @@ public abstract class RMIClient {
 			case "RETRIEVE":
 				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 				log.info("Client on Server #" + serverNum + " RUNNING RETRIEVE :"
-						+ hostImpl.GET(coordinator_hostname + ":" + coordinator_port, key));
+						+ hostImpl.RETRIEVE(coordinator_hostname + ":" + coordinator_port, key));
 				break;
 			case "OBTAIN":
 					hostImpl.OBTAIN(hostname + ":" + port, key);
@@ -267,14 +306,9 @@ public abstract class RMIClient {
 				break;
 			case "PUT":
 				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				log.info("Client on Server #" + serverNum + " RUNNING GET "
+				log.info("Client on Server #" + serverNum + " RUNNING PUT "
 						+ hostImpl.PUT(hostname + ":" + port, key, values));
-				break;
-			case "DELETE":
-				hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + hostname + ":" + port + "/Calls" );
-				log.info("Client on Server #" + serverNum + " RUNNING GET "
-						+ hostImpl.DELETE(hostname + ":" + port, key));
-				break;
+				break;	
 			case "QUERY_MESSAGE":
 				if (message instanceof Serializable) {
 					if (is_destination_coordinator)
@@ -287,23 +321,6 @@ public abstract class RMIClient {
 						log.error("Error Client on Server #" + rmiMetadata + " RUNNING QUERY MESSAGE: "
 								+ " garbled message.");
 					}
-				}
-				break;
-			case "INVALIDATE_MESSAGE":
-				if (message instanceof Serializable) {
-					if (is_destination_coordinator)
-						for(Integer leaf_hostport_key: leaf_node_indices.get(dest_super_peer_index_key)) {
-							InvalidateMessage i_message = (InvalidateMessage) message;
-							hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + 
-							(hostPorts[leaf_hostport_key][0]) + ":" + (hostPorts[leaf_hostport_key][1]) + "/Calls");
-							((LeafNodeServerInterfaceImpl) hostImpl).INVALIDATION("" + i_message.TYPE_ID,
-									hostname + ":" + port, i_message.getKey(),
-									i_message.getVersionNumber());
-						}
-						
-				} else {
-						log.error("Error Client on Server #" + rmiMetadata + " RUNNING INVALIDATE MESSAGE: "
-								+ " garbled message.");
 				}
 				break;
 			case "QUERY_HIT_MESSAGE":

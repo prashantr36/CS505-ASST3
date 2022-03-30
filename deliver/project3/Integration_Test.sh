@@ -2,6 +2,7 @@ echo "Setting up 10 Gnutella..."
 FILE=configuration/configs.txt
 Server_Name=0
 Gnutella_Name=0
+export PUSH_BASED_CONSISTENCY=TRUE
 chmod 775 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py
 find ../ -type f -name "*.txt" -exec touch {} +
 while read line;do

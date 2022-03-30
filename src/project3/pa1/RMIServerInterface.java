@@ -6,12 +6,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import project3.pa1.RMIServerInterfaceImpl.PeerToContact;
 /*
  * Server interface- clients can call the following methods
  */
 public interface RMIServerInterface extends Remote{
 	public String PUT(String clientId, String key,String value) throws RemoteException;
-	public String GET(String clientId,String key)throws RemoteException;
+	public PeerToContact GET(String clientId,String key)throws RemoteException;
 	public String EDIT(String clientId,String key)throws RemoteException;
 	public String DELETE(String clientId, String key)throws RemoteException;
 	public String DELETE_X(String clientId, String key)throws RemoteException;
@@ -21,4 +23,5 @@ public interface RMIServerInterface extends Remote{
 	public String QUERY_MESSAGE(String clientId, Object message) throws RemoteException;
 	public String QUERY_HIT_MESSAGE(String string, String key, Object message) throws RemoteException;
 	public String OBTAIN(String clientId, String filename)throws RemoteException;
+	public String RETRIEVE(String clientId, String filename) throws RemoteException;
 }

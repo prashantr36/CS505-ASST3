@@ -6,13 +6,14 @@ import java.util.Arrays;
 
 import project3.pa1.RMIClient.RMIMetadata;
 import project3.pa1.RMIServerInterfaceImpl;
+import project3.pa3.FileRepository.FileRepositoryFile;
 import project3.pa3.FileRepository.FileUnFoundException;
 
 public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implements LeafNodeServerInterface{
 	private static final long serialVersionUID = 1L;
 	private static FileRepository file_repository;
 	protected LeafNodeServerInterfaceImpl(int portNumber) throws Exception {
-		super(portNumber, (file_repository = new FileRepository()));
+		super(portNumber, (file_repository = new FileRepository("localhost", portNumber)));
 	}
 	
 	@Override
@@ -65,13 +66,18 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implemen
 	public String INVALIDATION(String message_id, String clientID, String filename, int versionNumber)
 			throws RemoteException {
 		try {
-			file_repository.isStaleThenInvalidate(filename, versionNumber);
+			if(!file_repository.get(filename).isMasterClient()
+					&& file_repository.get(filename).isValid()
+				&& file_repository.isStaleThenInvalidate(filename, versionNumber)) {
+				InvalidateMessage i_msg = new InvalidateMessage(filename, versionNumber);
+				log.info("[FileRepository (" + FileRepository.hostName + "," + FileRepository.portNumber + ")| Success Cache cleared]  request from " + clientID + i_msg);
+			}
 		} catch (FileUnFoundException e) {
 			InvalidateMessage i_msg = new InvalidateMessage(filename, versionNumber);
-			log.error("[FileRepository| Error]  request from " + clientID + " i_msg" + i_msg + " No such file in cache.");
+			//log.error("[FileRepository| Error]  request from " + clientID + " i_msg" + i_msg + " No such file in cache.");
 		} catch (IOException e) {
 			InvalidateMessage i_msg = new InvalidateMessage(filename, versionNumber);
-			log.error("[FileRepository| Error]  IOException request from " + clientID + " i_msg" + i_msg + " No such file in cache.");
+			log.error("[FileRepository (" + FileRepository.hostName + "," + FileRepository.portNumber + ")| Error]  IOException request from " + clientID + "  i_msg "+ i_msg + " No such file in cache.");
 		}
 		return ACK;
 	}
@@ -80,12 +86,59 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implemen
 	public String EDIT(String clientId, String key) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
+			log.info(" EDIT WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
+			file_repository.update(new FileRepository.FileRepositoryFile(key));
+			return ACK;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return NACK;
+		}
+	}
+	
+	@Override
+	public String POLL(String clientId, String key, Long version) throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			log.info(" POLL WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
+			if(!file_repository.isValidFile(key, version)) {
+				return FILE_OUTDATED;
+			}
+			return ACK;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return NACK;
+		}
+	}
+	
+	@Override
+	public FileRepositoryFile POLL_FILE_REPOSITORY(String clientId, String key) throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			log.info(" POLL FileRepositoryFile WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
+			return file_repository.get(key);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new FileRepositoryFile();
+		}
+	}
+	
+	@Override
+	public String DELETE(String clientId, String key) throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			log.info(" DELETE WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
 			file_repository.update(new FileRepository.FileRepositoryFile(key));
 			return ACK;
 		} catch(Exception e) {
 			log.error(e.getStackTrace());
 			return NACK;
 		}
+	}
+
+	@Override
+	public String RETRIEVE(String filename) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

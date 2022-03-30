@@ -15,13 +15,16 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentNavigableMap;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
@@ -34,6 +37,9 @@ import project3.io.RMIInputStreamImpl;
 import project3.io.RMIOutputStream;
 import project3.io.RMIOutputStreamImpl;
 import project3.pa3.FileRepository;
+import project3.pa3.LeafNodeServerInterface;
+import project3.pa3.RMISuperPeerClient;
+import project3.pa3.SuperPeerServerInterface;
 import project3.pa3.FileRepository.FileDuplicationException;
 import project3.pa3.FileRepository.FileRepositoryFile;
 
@@ -53,6 +59,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	private static final String ACCEPT = "ACCEPT";
 	protected static final String ACK = "ACK";
 	protected static final String NACK = "NACK";
+	protected static final String FILE_OUTDATED = "FILE_OUT_OF_DATE";
 	private static final int numCoordinators = 1;
 	final public static int BUF_SIZE = 1024 * 64;
 	public Runnable updateFolder;
@@ -194,41 +201,92 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			}
 		return false;
 	}
+	
+	public class PeerToContact {
+		public String peer_to_contact;
+		public String response;
+		public String master_peer_to_contact;
+		public PeerToContact(String peer_to_contact, String response, 
+								String master_peer_to_contact) {
+			this.peer_to_contact = peer_to_contact;
+			this.response = response;
+			this.master_peer_to_contact = master_peer_to_contact;
+		}
+	}
 
-	public  String GET(String clientId, final String key) {
+	public PeerToContact GET(String clientId, final String key) {
 		log.info("Server at " + local_hostname + ":" + local_port + " "+ "received [GET " + key + "] from client " + clientId);
 		String response = "";
+		String peer_to_contact = "";
+		String master_peer_to_contact = "";
 		try {
 			LocateRegistry.getRegistry(coordinator_hostname, Integer.parseInt(coordinator_port));
+			SuperPeerServerInterface hostImpl = (SuperPeerServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
+			HashMap<String, FileRepositoryFile> peers_to_contact = hostImpl.SEARCH(clientId, key);
 			
-			RMIServerInterface hostImpl = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
-			final String peer_to_contact = hostImpl.ASK("GET", clientId, key, "");
+			
+			if(peers_to_contact.size() == 0) {
+				throw new Exception(" No peers to contact. " + clientId + " key " + key);
+			}
+			List<FileRepositoryFile> master_peers_to_contact = peers_to_contact.values().stream()
+				    .filter(p -> p.isMasterClient()).collect(Collectors.toList());
+			if(master_peers_to_contact.size() == 0) {
+				throw new Exception(" No master peers to contact. " + clientId + " key " + key);
+			}
+			List<FileRepositoryFile> all_valid_peers_to_contact = peers_to_contact.values().stream().filter(p -> p.isValid() && 
+					master_peers_to_contact.get(0).getVersion() == p.getVersion()).collect(Collectors.toList());
+			Random rand = new Random();
+			FileRepositoryFile peer_to_contact_fpf = all_valid_peers_to_contact.get(rand.nextInt(all_valid_peers_to_contact.size()));
+			
+			if(all_valid_peers_to_contact.size() == 0) {
+				throw new Exception(" No valid peers to contact. " + clientId + " key " + key);
+			}
+			
+			for(String k: peers_to_contact.keySet()) {
+				if(peers_to_contact.get(k) == peer_to_contact_fpf) {
+					peer_to_contact = k;
+					break;
+				}
+			}
+			for(String k: peers_to_contact.keySet()) {
+				if(peers_to_contact.get(key) == master_peers_to_contact.get(0)) {
+					master_peer_to_contact = k;
+					break;
+				}
+				
+			}
+			log.info("PEERS TO CONTACT " + peers_to_contact);
+			final String peer_to_contact_dup = peer_to_contact;
 			log.info("GET: key peer_to_contact  " + peer_to_contact);
 			if(peer_to_contact.isEmpty() || peer_to_contact.contains("REJECT")) {
 				log.info("No such file on any peer");
-				return "No such file on any peer";
+				return new PeerToContact(peer_to_contact, "No such file on any peer", master_peer_to_contact);
 			}
+			
 			if(local_hostname.equalsIgnoreCase(peer_to_contact.split(":")[0])
-					&& local_port.equalsIgnoreCase(peer_to_contact.split(":")[1])) {
+					&& local_port.equalsIgnoreCase(peer_to_contact.split(":")[1])
+					|| peers_to_contact.keySet().contains(local_hostname + ":" + local_port) ) {
 				log.info("[clientId: " + clientId + "Freshest copy of " + key + " already. No GET allowed.]");
-				return peer_to_contact;
+				response = "File Already Latest";
+				return new PeerToContact(peer_to_contact, response, master_peer_to_contact);
 			}
 			if(peer_to_contact.split(":")[0].isEmpty() || peer_to_contact.split(":")[1].isEmpty()) {
-				return NACK;
+				return new PeerToContact(peer_to_contact, NACK, master_peer_to_contact);
 			}
 			
 
 			CompletableFuture
 	            .supplyAsync(() -> {
 	            	 try {
-		            	 Downloader downloader = new Downloader(peer_to_contact.split(":")[0], Integer.parseInt(peer_to_contact.split(":")[1]) + 1, key);
+		            	 Downloader downloader = new Downloader(peer_to_contact_dup.split(":")[0], Integer.parseInt(peer_to_contact_dup.split(":")[1]) + 1, key);
 				         downloader.start();
 				         
 	            	 } catch(Exception e) {
 	            		 throw new RuntimeException("socket closed unexpectedly or file not found.");   
 	            	 }
 	            	 try {
-						hostImpl.ASK("PUT", clientId, key, "");
+	            		RMIServerInterface hostImplPa1 = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
+	            		hostImplPa1.ASK("PUT", clientId, key, "");
 						frep.add(new FileRepositoryFile(key));
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
@@ -236,13 +294,17 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (FileDuplicationException e) {
-						log.error("File Duplication Error " + e);
+						log.error("File Already Latest. " + key + " " + clientId);
+					} catch (NotBoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 	            	 return "FileRepositoryFile " + key + " Downloaded at " + clientId;
 	            }).exceptionally(ex -> {
 	            	try {
-						hostImpl.ASK("DELETE", clientId, key, "");
-					} catch (RemoteException e) {
+	            		RMIServerInterface hostImplPa1 = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
+	            		hostImplPa1.ASK("DELETE", clientId, key, "");
+					} catch (RemoteException | MalformedURLException | NotBoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -256,7 +318,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			response = "No key "+ key + " matches db ";
 			log.error(e.getMessage());
 		}
-		return response;
+		return new PeerToContact(peer_to_contact, response, master_peer_to_contact);
 	}
 	
 	@Override
@@ -371,9 +433,21 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 		return null;
 	}
 	@Override
-	public String RETRIEVE(String filename) throws RemoteException {
+	public String RETRIEVE(String clientId, String filename) throws RemoteException {
 		// TODO Auto-generated method stub
-		return GET(local_hostname + ":" + local_port, filename);
+		PeerToContact peer_to_contact = GET(clientId, filename);
+		if(RMISuperPeerClient.PUSH_CONSISTENCY_METHOD.equalsIgnoreCase("FALSE")) {
+			/*PullWatcherDaemon pull_watcher_daemon = new 
+					PullWatcherDaemon(RMISuperPeerClient.TTR,
+		   					frep,
+		   					filename, 
+		   					LeafNodeServerInterface lnsi,
+		   					String clientId)
+			*/
+			return "UNIMPLEMENTED";
+		} else {
+			return peer_to_contact.response;
+		}
 	}
 	
 	@Override

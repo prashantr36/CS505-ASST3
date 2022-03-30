@@ -1,5 +1,6 @@
 echo "Setting up 10 Gnutella..."
 FILE=configuration/configs.txt
+export PUSH_BASED_CONSISTENCY=TRUE
 Server_Name=0
 Gnutella_Name=0
 chmod 775 "$( cd "$( dirname "$0" )" && pwd )"/Instrument/RMIClient/integration_test.py

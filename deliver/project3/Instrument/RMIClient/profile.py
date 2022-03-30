@@ -60,6 +60,9 @@ def plot(data):
     plt.savefig("performance.png")
     plt.show()
 
+class MyClass(object):
+    pass
+
 if __name__ == "__main__":
     data = generate_data()
 
