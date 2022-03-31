@@ -38,6 +38,7 @@ import project3.io.RMIOutputStream;
 import project3.io.RMIOutputStreamImpl;
 import project3.pa3.FileRepository;
 import project3.pa3.LeafNodeServerInterface;
+import project3.pa3.PullWatcherDaemon;
 import project3.pa3.RMISuperPeerClient;
 import project3.pa3.SuperPeerServerInterface;
 import project3.pa3.FileRepository.FileDuplicationException;
@@ -215,6 +216,9 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	}
 
 	public PeerToContact GET(String clientId, final String key) {
+		
+		/*--------- start change ----------*/
+		String profile = System.getenv("PROFILE").trim();
 		log.info("Server at " + local_hostname + ":" + local_port + " "+ "received [GET " + key + "] from client " + clientId);
 		String response = "";
 		String peer_to_contact = "";
@@ -249,12 +253,26 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 				}
 			}
 			for(String k: peers_to_contact.keySet()) {
-				if(peers_to_contact.get(key) == master_peers_to_contact.get(0)) {
+				if(peers_to_contact.get(k) == master_peers_to_contact.get(0)) {
 					master_peer_to_contact = k;
 					break;
 				}
 				
 			}
+								
+			//compute percentage
+			if (!profile.isEmpty()) {
+				double num_of_invalid = 0.0;
+				for (String k : peers_to_contact.keySet()){
+					if(!peers_to_contact.get(k).isValid()){
+						num_of_invalid++;
+					}
+				}
+				double percentage = (num_of_invalid / (double)peers_to_contact.keySet().size()) * 100.0;
+				System.out.println("Percentage of Invalid query results from all leaf nodes : "+ num_of_invalid + " and  % "+percentage);
+			}
+			
+			log.info("MASTER PEER TO CONTACT " + master_peer_to_contact);
 			log.info("PEERS TO CONTACT " + peers_to_contact);
 			final String peer_to_contact_dup = peer_to_contact;
 			log.info("GET: key peer_to_contact  " + peer_to_contact);
@@ -265,7 +283,8 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 			
 			if(local_hostname.equalsIgnoreCase(peer_to_contact.split(":")[0])
 					&& local_port.equalsIgnoreCase(peer_to_contact.split(":")[1])
-					|| peers_to_contact.keySet().contains(local_hostname + ":" + local_port) ) {
+					|| (peers_to_contact.keySet().contains(local_hostname + ":" + local_port)
+							&& peers_to_contact.get(local_hostname + ":" + local_port).isValid())) {
 				log.info("[clientId: " + clientId + "Freshest copy of " + key + " already. No GET allowed.]");
 				response = "File Already Latest";
 				return new PeerToContact(peer_to_contact, response, master_peer_to_contact);
@@ -274,7 +293,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 				return new PeerToContact(peer_to_contact, NACK, master_peer_to_contact);
 			}
 			
-
+			/*--------- end change ----------*/
 			CompletableFuture
 	            .supplyAsync(() -> {
 	            	 try {
@@ -287,7 +306,7 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	            	 try {
 	            		RMIServerInterface hostImplPa1 = (RMIServerInterface) Naming.lookup("rmi://" + coordinator_hostname + ":" + coordinator_port + "/Calls" );
 	            		hostImplPa1.ASK("PUT", clientId, key, "");
-						frep.add(new FileRepositoryFile(key));
+						frep.add(new FileRepositoryFile(key, master_peers_to_contact.get(0).getVersion()));
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -436,15 +455,34 @@ public abstract class RMIServerInterfaceImpl extends UnicastRemoteObject impleme
 	public String RETRIEVE(String clientId, String filename) throws RemoteException {
 		// TODO Auto-generated method stub
 		PeerToContact peer_to_contact = GET(clientId, filename);
-		if(RMISuperPeerClient.PUSH_CONSISTENCY_METHOD.equalsIgnoreCase("FALSE")) {
-			/*PullWatcherDaemon pull_watcher_daemon = new 
-					PullWatcherDaemon(RMISuperPeerClient.TTR,
-		   					frep,
-		   					filename, 
-		   					LeafNodeServerInterface lnsi,
-		   					String clientId)
-			*/
-			return "UNIMPLEMENTED";
+		String psb = System.getenv("PUSH_BASED_CONSISTENCY").trim();
+		System.out.println(" PSB " + psb);
+		if(psb.equalsIgnoreCase("FALSE")) {
+			
+			
+			System.out.println("Master peer to contact " + peer_to_contact.master_peer_to_contact);
+			LocateRegistry.getRegistry(peer_to_contact.master_peer_to_contact.split(":")[0],
+					Integer.parseInt(peer_to_contact.master_peer_to_contact.split(":")[1]));
+			
+			LeafNodeServerInterface hostImpl;
+			try {
+				hostImpl = (LeafNodeServerInterface) Naming.lookup("rmi://" + peer_to_contact.master_peer_to_contact + "/Calls" );
+				int ttr = Integer.parseInt(System.getenv("TTR").trim());
+				PullWatcherDaemon pull_watcher_daemon = new 
+						PullWatcherDaemon(ttr,
+			   					frep,
+			   					filename, 
+			   					hostImpl,
+			   					clientId);
+				if(!PullWatcherDaemon.keys_being_monitored.contains(filename)) {
+					pull_watcher_daemon.beepForAnHour();
+				}
+			} catch (MalformedURLException | RemoteException | NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(" KEYS being monitored " + PullWatcherDaemon.keys_being_monitored);
+			return peer_to_contact.response;
 		} else {
 			return peer_to_contact.response;
 		}

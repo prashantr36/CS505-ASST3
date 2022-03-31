@@ -87,7 +87,7 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implemen
 		// TODO Auto-generated method stub
 		try {
 			log.info(" EDIT WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
-			file_repository.update(new FileRepository.FileRepositoryFile(key));
+			file_repository.update(new FileRepository.FileRepositoryFile(key, 0));
 			return ACK;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -99,11 +99,11 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implemen
 	public String POLL(String clientId, String key, Long version) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
-			log.info(" POLL WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
 			if(!file_repository.isValidFile(key, version)) {
+				log.info(" POLL WAS CALLED to invalidate FROM CLIENTID " + clientId + " Key: " + key);
 				return FILE_OUTDATED;
 			}
-			return ACK;
+			return "VALID";
 		} catch(Exception e) {
 			e.printStackTrace();
 			return NACK;
@@ -127,7 +127,7 @@ public class LeafNodeServerInterfaceImpl extends RMIServerInterfaceImpl implemen
 		// TODO Auto-generated method stub
 		try {
 			log.info(" DELETE WAS CALLED FROM CLIENTID " + clientId + " Key: " + key);
-			file_repository.update(new FileRepository.FileRepositoryFile(key));
+			file_repository.update(new FileRepository.FileRepositoryFile(key, 0));
 			return ACK;
 		} catch(Exception e) {
 			log.error(e.getStackTrace());

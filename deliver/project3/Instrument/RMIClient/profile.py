@@ -24,13 +24,17 @@ def generate_data():
     res_list  = []
     time_list = []
 
-    test_profile_single = '''subprocess.call(['java', '-jar', '-DclientId=2','-DserverChoice=4','RMISuperPeerClient.jar', 'QUERY_MESSAGE','will_it_work.txt'],stdout=subprocess.PIPE)
-    '''
-    reps = 25
+    test_profile_single = """subprocess.call(['java', '-jar', '-DclientId=1','-DserverChoice=1','RMISuperPeerClient.jar', 'RECIEVE','will_it_work.txt'],stdout=subprocess.PIPE)"""
+    test_profile_single_two = """subprocess.call(['java', '-jar', '-DclientId=1','-DserverChoice=1','RMISuperPeerClient.jar', 'EDIT','will_it_work.txt'],stdout=subprocess.PIPE)"""
+    test_profile_single_three = """subprocess.call(['java', '-jar', '-DclientId=1','-DserverChoice=1','RMISuperPeerClient.jar', 'REFRESH','will_it_work.txt'],stdout=subprocess.PIPE)"""
+        
+    reps = 1
     for req in range(1, 5):
         for res in range(1, 5):
             print(req, res)
-            time = timeit.timeit(stmt = test_profile_single, setup = "import subprocess, os", number=25) * T_CONVERSION / reps
+            time = timeit.timeit(stmt = test_profile_single
+                                  + "\n" + test_profile_single_two 
+                                  + "\n" + test_profile_single_three, setup = "import subprocess, os", number=25) * T_CONVERSION / reps
             req_list.append(req)
             res_list.append(res)
             time_list.append(time)

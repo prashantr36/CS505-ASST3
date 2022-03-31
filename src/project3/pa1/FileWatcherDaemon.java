@@ -98,7 +98,7 @@ public class FileWatcherDaemon implements Runnable {
 					
 		            for(String fileNameCreate: fileNamesCreated) {
 		            	this.rsimpl.PUT(this.rsimpl.local_hostname  + ":" + this.rsimpl.local_port, fileNameCreate, "");
-		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameCreate);
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameCreate, 0);
 		            	fileRepositoryFile.setIsMasterClient(true);
 		            	try {
 		            		System.out.println("CREATED" + fileRepositoryFile);
@@ -111,7 +111,7 @@ public class FileWatcherDaemon implements Runnable {
 		            
 		            for(String fileNameDelete: fileNamesDeleted) {
 		            	this.rsimpl.DELETE(this.rsimpl.local_hostname  + ":" + this.rsimpl.local_port, fileNameDelete);
-		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameDelete);
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameDelete, 0);
 		            	try {
 							this.rsimpl.frep.remove(fileNameDelete);
 						} catch (FileUnFoundException e) {
@@ -122,7 +122,7 @@ public class FileWatcherDaemon implements Runnable {
 		            }
 		            
 		            for(String fileNameModified: fileNamesModified) {
-		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameModified);
+		            	FileRepositoryFile fileRepositoryFile = new FileRepositoryFile(fileNameModified, 0);
 		            	fileRepositoryFile.setIsMasterClient(true);
 		            	if(!fileRepositoryFile.isMasterClient()) {
 		            		System.err.format("Cannot modify file '%s'" +

@@ -7,6 +7,8 @@ import project3.pa1.RMIServer;
 
 public class LeafNode extends RMIServer {
 	protected static RMIServer rmi_server;
+	public static String PUSH_CONSISTENCY_METHOD = "";
+	public static Integer TTR = 450;
 	public LeafNode(String hostname, Integer portNumber) throws Exception {
 		super(hostname, portNumber, new LeafNodeServerInterfaceImpl(portNumber));
 	}
@@ -47,6 +49,7 @@ public class LeafNode extends RMIServer {
 	
 	
 	public static void main(String args[]) throws Exception{
+		
 		initalize(args);
 	}
 }

@@ -1,5 +1,6 @@
 package project3.pa3;
 
+/*--------- start change ----------*/
 public class InvalidateMessage extends Message {
   private static final long serialVersionUID = 1L;
   public static final byte TYPE_ID = (byte) 0x82;
@@ -22,3 +23,4 @@ public class InvalidateMessage extends Message {
 	  return versionNumber;
   }
 }
+/*--------- end change ----------*/

@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+/*--------- start change ----------*/
 public class FileRepository {
 	
 	public static class FileDuplicationException extends Exception {
@@ -75,14 +75,17 @@ public class FileRepository {
 			this.isMasterClient = false;
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		    Instant instant = timestamp.toInstant();
+		    this.last_mod_time = instant;
 		}
 		
-		public FileRepositoryFile(String filename) {
+		public FileRepositoryFile(String filename, long version) {
 			this.filename = filename;
 			this.status = "VALID";
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		    Instant instant = timestamp.toInstant();
 		    this.last_mod_time = instant;
+		    this.version = version;
+		    this.isMasterClient = false;
 		}
 		
 		public FileRepositoryFile(FileRepositoryFile fileRepositoryFile) {
@@ -118,7 +121,7 @@ public class FileRepository {
 		}
 		
 		public boolean isValid() {
-			return !this.status.equalsIgnoreCase("FILE OUT OF DATE");
+			return this.status.equalsIgnoreCase("VALID");
 		}
 		
 		public void setIsMasterClient(boolean master_client) {
@@ -185,7 +188,7 @@ public class FileRepository {
 	
 	public  synchronized void add(FileRepositoryFile fileRepositoryFile) throws FileDuplicationException, IOException {
 		if(collection.containsKey(fileRepositoryFile.getFileName())) {
-			if(collection.get(fileRepositoryFile.getFileName()).version == fileRepositoryFile.getVersion())
+			if(collection.get(fileRepositoryFile.getFileName()).isValid())
 				throw new FileDuplicationException("Duplicated file with id: " + fileRepositoryFile.getFileName());
 		}
 		collection.put(fileRepositoryFile.getFileName(), fileRepositoryFile);
@@ -194,22 +197,15 @@ public class FileRepository {
 	
 	public  synchronized void update(FileRepositoryFile fileRepositoryFile) throws FileDuplicationException, VersionMismatchException, FileUnFoundException, IOException {
 		if(!collection.containsKey(fileRepositoryFile.filename)) {
-			throw new FileUnFoundException("Not found file with id: " + fileRepositoryFile.getFileName());
+			add(fileRepositoryFile);
 		}
 		FileRepositoryFile latestFile = collection.get(fileRepositoryFile.getFileName());
-		if(fileRepositoryFile.getVersion() != latestFile.getVersion()) {
-			throw new VersionMismatchException(
-					"Tried to update stale version " + fileRepositoryFile.getVersion()
-					+ " while actual version is " + latestFile.getVersion()
-					);
-		}
-		
 		//update the file version including the representation - modify the
 		//reference here
-		fileRepositoryFile.setVersion(fileRepositoryFile.getVersion() + 1);
+		fileRepositoryFile.setVersion(latestFile.getVersion() + 1);
 		//save the file copy to repository
 		collection.put(fileRepositoryFile.getFileName(), fileRepositoryFile);
-		System.out.println(" UPDATING FILE REPOSITORY VERSION to " +  fileRepositoryFile.getVersion());
+		System.out.println(" UPDATING FILE REPOSITORY VERSION to " +  latestFile.getVersion());
 		saveJsonToFile(collection, fileRepositoryFile.getFileName());
 	}
 	
@@ -238,7 +234,7 @@ public class FileRepository {
 		return collection.containsKey(filename);
 	}
 	
-	public synchronized boolean isStaleThenInvalidate(String filename, int versionNumber) throws FileUnFoundException, IOException {
+	public synchronized boolean isStaleThenInvalidate(String filename, long versionNumber) throws FileUnFoundException, IOException {
 		if((versionNumber == FORCE_FILE_STALE_VERSION_NUMBER || get(filename).getVersion() < (int) versionNumber
 				) && !get(filename).isMasterClient) {
 			collection.get(filename).status = "FILE OUT OF DATE";
@@ -249,11 +245,20 @@ public class FileRepository {
 	}
 	
 	public synchronized boolean isValidFile(String filename, Long versionNumber) throws FileUnFoundException, IOException {
-		if(get(filename).getVersion() >= versionNumber
-				&& !get(filename).isMasterClient) {
-			saveJsonToFile(collection, filename);
+		if(get(filename).getVersion() == versionNumber
+				&& get(filename).isMasterClient) {
 			return true;
 		}
+		
+		if(get(filename).getVersion() == versionNumber
+				&& !get(filename).isMasterClient) {
+			System.out.println(" SHOULD NOT HAPPEN !!!" + FileRepository.hostName 
+					+ " " + FileRepository.portNumber);
+			return true;
+		}
+		
 		return false;
 	}
 }
+
+/*--------- end change ----------*/

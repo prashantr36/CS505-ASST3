@@ -20,7 +20,8 @@ import project3.pa3.FileRepository.FileRepositoryFile;
 import project3.pa1.RMIClient.RMIMetadata;
 
 public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl implements SuperPeerServerInterface {
-
+	
+	/*--------- start change ----------*/
 	private static final long serialVersionUID = 1L;
 	private RMISuperPeerClient rmi_super_peer_client;
 	private HashMapHitCounter hash_map_hit_counter;
@@ -150,7 +151,8 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl implement
         }
         return ACK;
 	}
-
+	
+	/*--------- end change ----------*/
 	@Override
 	public String QUERY_HIT_MESSAGE(String clientId, String key, Object message) throws RemoteException {
 		QueryHitMessage query_hit_message = (QueryHitMessage) message;

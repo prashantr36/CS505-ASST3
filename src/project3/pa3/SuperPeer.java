@@ -8,6 +8,8 @@ import project3.pa1.RMICoordinator;
 import project3.pa3.SuperPeerIntefaceImpl;
 
 public class SuperPeer extends RMICoordinator {
+	public static String PUSH_CONSISTENCY_METHOD = "";
+	public static Integer TTR = 450;
 	public SuperPeer(String hostname, Integer portNumber) throws Exception {
 		super(hostname, portNumber, (CentralIndexingServerInterface) new SuperPeerIntefaceImpl(portNumber));
 		// TODO Auto-generated constructor stub

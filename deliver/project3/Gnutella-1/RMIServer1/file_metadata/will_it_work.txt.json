@@ -1,0 +1,10 @@
+{
+  "filename": "will_it_work.txt",
+  "version": 0,
+  "status": "VALID",
+  "isMasterClient": false,
+  "last_mod_time": {
+    "seconds": 1648701388,
+    "nanos": 141000000
+  }
+}
