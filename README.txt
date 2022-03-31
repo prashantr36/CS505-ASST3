@@ -17,7 +17,7 @@ Following which change directory to point to project you're testing, for example
 
 After which, 
 
-					$"sh runJavaRMI.sh"
+					$"bash runJavaRMI.sh"
 
 This will run the unit tests as well as the integration tests written in python found in the RMIClient folder.
 The RMIClient is a driver program to run on top of the RMIServers to make them behave like Peers in P2P would.
