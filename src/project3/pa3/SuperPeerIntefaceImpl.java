@@ -58,7 +58,7 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl implement
 		hash_map_hit_counter.forceAdd(query);
 		try {
           query.decrementTimeToLiveCounter();
-          for(String[] coordinator_connects: this.coordinator_connections) {
+          for(String[] coordinator_connects: RMICoordinatorInterfaceImpl.coordinator_connections) {
         	  RMIMetadata rm_metadata_copy = new RMIMetadata(hostname, port +"", coordinator_connects[0],
         			  											coordinator_connects[1]);
         	  rm_metadata_copy.dst_hostname = coordinator_connects[0];
@@ -127,7 +127,7 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl implement
         rmi_super_peer_client.setSeen(query, rmi_metadata);
         try {
           query.decrementTimeToLiveCounter();
-          for(String[] coordinator_connects: this.coordinator_connections) {
+          for(String[] coordinator_connects: SuperPeerIntefaceImpl.coordinator_connections) {
         	  RMIMetadata rm_metadata_copy = new RMIMetadata(hostname, port +"", coordinator_connects[0],
         			  											coordinator_connects[1]);
         	  rm_metadata_copy.dst_hostname = coordinator_connects[0];
@@ -196,7 +196,7 @@ public class SuperPeerIntefaceImpl extends RMICoordinatorInterfaceImpl implement
 		String dst_port = clientId.split(":")[1];
 		
 		RMIMetadata rmi_metadata = new RMIMetadata(hostname, port +"", dst_source, dst_port);
-		for(String[] coordinator_connects: this.all_coordinator_connections) {
+		for(String[] coordinator_connects: SuperPeerIntefaceImpl.all_coordinator_connections) {
 		  RMIMetadata rm_metadata_copy = new RMIMetadata(hostname, port +"", coordinator_connects[0],
 			  											coordinator_connects[1]);
 		  rm_metadata_copy.dst_hostname = coordinator_connects[0];
